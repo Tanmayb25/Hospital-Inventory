@@ -4,11 +4,10 @@ import cors from "cors";
 import morgan from "morgan";
 import bodyParser from "body-parser";
 import { connect } from "./database/connection.js";
-// import router from "./router/router.js";
 import dotenv from 'dotenv'
 import path from 'path'
 import {fileURLToPath} from 'url';
-
+import router from "./router/router.js"; 
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -29,7 +28,7 @@ app.get('/',(req,res)=>{
 });
 
 /**routes */
-// app.use('/api',router);
+app.use('/api',router);
 
 /*start server after db connected */
 connect().then(()=>{
