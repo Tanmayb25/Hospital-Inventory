@@ -13,7 +13,7 @@ export async function addSurgicalEquipment(req,res){
                 reject(new Error({error:err}))
             }
             if(surgicalEquipment){
-                reject({error:"surgicalEquipment alread exist in database"})
+                reject("surgicalEquipment alread exist in database")
             }
             resolve()
         })

@@ -53,20 +53,6 @@ export async function getMedicines(req,res){
             if(sortBy!="")
             {
                 const medicines = await Medicine.find({type});
-
-                // // const medicinefound = new Promise((resolve,reject)=>{
-                // //             Medicine.find({type})
-                // //                     .sort(({type:1}),function(err,medicine) {
-                // //                                         if(err){
-                // //                                             reject(new Error({"ERROR":`THERE WAS AN ERROR ${err}`}))
-                // //                                         }
-                // //                                         if(!medicine){
-                // //                                             reject("THERE ARE NO SUCH MEDICINES")
-                // //                                         }
-                // //                                         resolve(medicine)
-                // //             })
-                // //     })
-
                 let medicinefound
                 if (sortBy === 'expiryDate') {
                 // Sort by expiry date (oldest first)
@@ -99,6 +85,22 @@ export async function getMedicines(req,res){
                     res.status(500).send({msg:`there was an error: ${err}`})        
                 })
             }     
+        }
+        else if(sortBy!="")
+        {
+            const medicines = await Medicine.find({});
+            let medicinefound
+            if (sortBy === 'expiryDate') {
+            // Sort by expiry date (oldest first)
+            medicinefound = medicines.sort((a, b) => new Date(a.expiryDate) - new Date(b.expiryDate));
+            } else if (sortBy === 'quantity') {
+            // Sort by quantity (highest first)
+            medicinefound = medicines.sort((a, b) => b.quantity - a.quantity);
+            }else{
+                // Invalid sort criteria specified
+                return res.status(400).json({ message: 'Invalid sort criteria' });
+              }
+              res.status(201).send(medicinefound);
         }
     }catch(ERROR){
         res.status(500).send({msg:`there was an error: ${ERROR}`})
