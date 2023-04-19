@@ -62,7 +62,7 @@ export async function getMedicines(req,res){
                 medicinefound = medicines.sort((a, b) => b.quantity - a.quantity);
                 }else {
                     // Invalid sort criteria specified
-                    return res.status(400).json({ message: 'Invalid sort criteria' });
+                    return res.status(400).json({ msg: 'Invalid sort criteria' });
                   }
                   res.status(201).send(medicinefound);
             }
@@ -98,7 +98,7 @@ export async function getMedicines(req,res){
             medicinefound = medicines.sort((a, b) => b.quantity - a.quantity);
             }else{
                 // Invalid sort criteria specified
-                return res.status(400).json({ message: 'Invalid sort criteria' });
+                return res.status(400).json({ msg: 'Invalid sort criteria' });
               }
               res.status(201).send(medicinefound);
         }
