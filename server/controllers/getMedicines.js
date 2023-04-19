@@ -7,7 +7,7 @@ const Medicine = mongoose.model('Medicine', medicineSchema);
 export async function getMedicines(req,res){
     try
     {
-        const {name,type,sortBy} = req.body
+        const {name,type,sortBy} = req.query.searchMedicine
         if(name==="" && type==="" && sortBy==="")
         {
             

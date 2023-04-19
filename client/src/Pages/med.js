@@ -1,7 +1,31 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Table from 'react-bootstrap/Table';
+import { useState } from 'react';
+import { getMedicine } from '../helper/helper';
+import toast, { Toaster } from 'react-hot-toast';
+
 
 function med() {
+
+  const [searchMedicine,setSearchMedicine] = useState({
+    name:"",
+    type:"",
+    sortBy:""
+  })
+
+  const [medicines,setMedicine] = useState([])
+
+  useEffect(()=>{
+    getMedicine(searchMedicine).then((result)=>{
+      setMedicine(result)
+    }).catch((err)=>{
+      toast.error('Problem while generating OTP!')
+    })
+  },[])
+
+
+
+
   return (
     <div>
     <Table striped>
@@ -14,27 +38,16 @@ function med() {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
+        {medicines && medicines.map((medicine,index) => (
+            <tr key={index}>
+          <td>{medicine.name}</td>
+          <td>{medicine.type}</td>
+          <td>{medicine.dosageForm}</td>
+          <td>{medicine.manufacturer}</td>
         </tr>
-        <tr>
-          <td>2</td>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td colSpan={2}>Larry the Bird</td>
-          <td>@twitter</td>
-        </tr>
+        ))}
       </tbody>
     </Table>
-
-
     </div>
   )
 }
