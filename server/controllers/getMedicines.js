@@ -14,7 +14,7 @@ export async function getMedicines(req,res){
             const medicinefound = new Promise((resolve,reject)=>{
                 Medicine.find({},function(err,medicines){
                     if(err){
-                        reject(new Error({"ERROR":`THERE WAS AN ERROR ${err}`}))
+                        reject(new Error(`THERE WAS AN ERROR ${err}`))
                     }
                     if(medicines){
                         resolve(medicines)
@@ -33,7 +33,7 @@ export async function getMedicines(req,res){
            const medicinefound = new Promise((resolve,reject)=>{
                     Medicine.findOne({name},function(err,medicine) {
                     if(err){
-                        reject(new Error({"ERROR":`THERE WAS AN ERROR ${err}`}))
+                        reject(new Error(`THERE WAS AN ERROR ${err}`))
                     }
                     if(!medicine){
                         reject("THERE IS NO SUCH MEDICINE")
@@ -71,7 +71,7 @@ export async function getMedicines(req,res){
                 const medicinefound = new Promise((resolve,reject)=>{
                     Medicine.find({type},function(err,medicine) {
                                 if(err){
-                                    reject(new Error({"ERROR":`THERE WAS AN ERROR ${err}`}))
+                                    reject(new Error(`THERE WAS AN ERROR ${err}`))
                                 }
                                 if(!medicine){
                                    reject("THERE ARE NO SUCH MEDICINES")
