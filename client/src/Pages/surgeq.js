@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
-import Surgicaleqform from '../components/surgicaleqform';import toast, { Toaster } from 'react-hot-toast';
+import {toast, Toaster } from 'react-hot-toast';
 import { getSurgicalEquipment } from '../helper/helper';
+import Surgicaleqform from '../components/surgicaleqform';
+
+
 
 function surgeq() {
   const [searchSurgicalEquimpent,setSearchSurgicalEquimpent]=useState({
