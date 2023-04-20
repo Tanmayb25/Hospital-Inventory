@@ -19,11 +19,11 @@ function med() {
     getMedicine(searchMedicine).then((result)=>{
       setMedicine(result)
     }).catch((err)=>{
-      toast.error('Problem while generating OTP!')
+      toast.error(`THERE WAS SOME PROBLEM: ${err.msg}`)
     })
   },[])
 
-
+console.log(medicines);
 
 
   return (
@@ -32,18 +32,20 @@ function med() {
       <thead>
         <tr>
           <th>#</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Quantity</th>
+          <th>Expiry date</th>
         </tr>
       </thead>
       <tbody>
-        {medicines && medicines.map((medicine,index) => (
+        {Array.isArray(medicines) && medicines.map((medicine,index) => (
             <tr key={index}>
+          <td>{index+1}</td>
           <td>{medicine.name}</td>
           <td>{medicine.type}</td>
-          <td>{medicine.dosageForm}</td>
-          <td>{medicine.manufacturer}</td>
+          <td>{medicine.quantity}</td>
+          <td>{medicine.expiryDate}</td>
         </tr>
         ))}
       </tbody>

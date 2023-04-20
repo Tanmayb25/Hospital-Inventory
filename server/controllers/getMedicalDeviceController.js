@@ -1,6 +1,6 @@
 /**GET http://localhost:8080/api/getMedicalDevice */
 import mongoose from "mongoose";
-import { medicalDeviceSchema } from "../models/medicalDevice";
+import { medicalDeviceSchema } from "../models/medicalDevice.js";
 const MedicalDevice = mongoose.model("MedicalDevices",medicalDeviceSchema)
 
 export async function getMedicalDevice(req,res){
