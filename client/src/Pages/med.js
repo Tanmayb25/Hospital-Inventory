@@ -23,18 +23,11 @@ function med() {
     getMedicine(searchMedicine).then((result)=>{
       setMedicine(result)
     }).catch((err)=>{
-<<<<<<<<< Temporary merge branch 1
       toast.error('Problem while generating OTP!')
     })
   },[])
 
 
-=========
-      toast.error(`THERE WAS SOME PROBLEM: ${err.msg}`)
-    })
-  },[])
-
-console.log(medicines);
 
 
 
@@ -67,7 +60,6 @@ console.log(medicines);
           <td>{medicine.type}</td>
           <td>{medicine.quantity}</td>
           <td>{medicine.expiryDate}</td>
->>>>>>>>> Temporary merge branch 2
         </tr>
         ))}
       </tbody>
