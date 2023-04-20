@@ -1,9 +1,10 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
-
+import Surgicaleqform from '../components/surgicaleqform';
 function surgeq() {
   return (
     <div>
+<Surgicaleqform/>
       <Table striped>
       <thead>
         <tr>
