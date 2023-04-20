@@ -5,9 +5,12 @@ import { surgicalEquipmentSchema } from "../models/surgicalEquipments.js";
 const SurgicalEquipment = mongoose.model("SurgicalEquipments",surgicalEquipmentSchema)
 
 export async function getSurgicalEquipment(req,res){
+    
+     console.log(req.query);
     try
     {
-        const {name,catagorie,sortBy} = req.body
+        const {name,catagorie,sortBy} = req.query.searchSurgicalEquipment
+        console.log(name,catagorie,sortBy);
         if(name==="" && catagorie==="" && sortBy==="")
         {
             

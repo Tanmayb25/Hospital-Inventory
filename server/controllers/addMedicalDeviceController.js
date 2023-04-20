@@ -1,6 +1,7 @@
 /**POST http://localhost:8080/api/addMedicalDevice */
 import mongoose from "mongoose";
-import { medicalDeviceSchema } from "../models/medicalDevice";
+import { medicalDeviceSchema } from "../models/medicalDevice.js";
+
 const MedicalDevice = mongoose.model('MedicalDevice', medicalDeviceSchema);
 
 export async function addMedicalDevice(req,res){
