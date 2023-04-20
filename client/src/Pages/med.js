@@ -19,11 +19,13 @@ function med() {
     getMedicine(searchMedicine).then((result)=>{
       setMedicine(result)
     }).catch((err)=>{
+
       toast.error(`THERE WAS SOME PROBLEM: ${err.msg}`)
     })
   },[])
 
 console.log(medicines);
+
 
 
   return (
@@ -46,6 +48,7 @@ console.log(medicines);
           <td>{medicine.type}</td>
           <td>{medicine.quantity}</td>
           <td>{medicine.expiryDate}</td>
+
         </tr>
         ))}
       </tbody>

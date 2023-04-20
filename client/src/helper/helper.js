@@ -40,4 +40,5 @@ export async function getLabEquipment(searchLabEquipment){
     }catch(err){
         return Promise.reject(err.response.data)
     }
+
 }
