@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
-import Surgicaleqform from '../components/surgicaleqform';import toast, { Toaster } from 'react-hot-toast';
+import Surgicaleqform from '../components/surgicaleqform';
+import toast, { Toaster } from 'react-hot-toast';
 import { getSurgicalEquipment } from '../helper/helper';
 
 function surgeq() {
