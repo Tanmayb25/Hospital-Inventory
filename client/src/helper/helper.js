@@ -1,5 +1,10 @@
 import axios from 'axios';
 
+
+
+
+
+
 // get the medicine
 export async function getMedicine(searchMedicine){
     try{
@@ -28,6 +33,8 @@ export async function getSurgicalEquipment(searchSurgicalEquipment){
     }
 }
 
+
+
 // get the Lab equipment
 export async function getLabEquipment(searchLabEquipment){
     try{
@@ -40,5 +47,4 @@ export async function getLabEquipment(searchLabEquipment){
     }catch(err){
         return Promise.reject(err.response.data)
     }
-
 }

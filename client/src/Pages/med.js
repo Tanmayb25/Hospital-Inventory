@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import Table from 'react-bootstrap/Table';
 import { useState } from 'react';
 import { getMedicine } from '../helper/helper';
@@ -23,15 +23,9 @@ function med() {
     getMedicine(searchMedicine).then((result)=>{
       setMedicine(result)
     }).catch((err)=>{
-
-      toast.error(`THERE WAS SOME PROBLEM: ${err.msg}`)
+      toast.error('Problem while generating OTP!')
     })
   },[])
-
-console.log(medicines);
-
-
-
   return (
     <div>
     <FloatingLabel controlId="floatingPassword" label="Search">
@@ -47,13 +41,10 @@ console.log(medicines);
       <thead>
         <tr>
           <th>#</th>
-          <th> Name</th>
+          <th>Name</th>
           <th>Type</th>
           <th>Quantity</th>
-         
           <th>Expiry date</th>
-        
-      
         </tr>
       </thead>
       <tbody>
@@ -64,7 +55,6 @@ console.log(medicines);
           <td>{medicine.type}</td>
           <td>{medicine.quantity}</td>
           <td>{medicine.expiryDate}</td>
-
         </tr>
         ))}
       </tbody>
