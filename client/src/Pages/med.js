@@ -1,8 +1,5 @@
-import React, { useEffect }, { useCallback, useEffect } from 'react'
+import React, { useEffect, useCallback, useEffect } from 'react'
 import Table from 'react-bootstrap/Table';
-
-
-
 import { useState } from 'react';
 import { getMedicine } from '../helper/helper';
 import toast, { Toaster } from 'react-hot-toast';
@@ -26,27 +23,6 @@ function med() {
     getMedicine(searchMedicine).then((result)=>{
       setMedicine(result)
     }).catch((err)=>{
-      toast.error(`THERE WAS SOME PROBLEM: ${err.msg}`)
-    })
-  },[])
-
-console.log(medicines);
-
-
-
-  const [searchMedicine,setSearchMedicine] = useState({
-    name:"",
-    type:"",
-    sortBy:""
-  })
-
-  const [medicines,setMedicine] = useState([])
-
-  useEffect(()=>{
-    getMedicine(searchMedicine).then((result)=>{
-      setMedicine(result)
-    }).catch((err)=>{
-
       toast.error(`THERE WAS SOME PROBLEM: ${err.msg}`)
     })
   },[])
@@ -85,7 +61,6 @@ console.log(medicines);
           <td>{medicine.quantity}</td>
           <td>{medicine.expiryDate}</td>
         </tr>
-        ))}
         ))}
       </tbody>
     </Table>
