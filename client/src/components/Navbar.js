@@ -14,7 +14,7 @@ function navbar() {
 
       <Navbar collapseOnSelect sticky="top"  expand="lg" bg="dark" variant="dark">
         <Container>
-        <Navbar.Brand href="#home">Hospital Inventory</Navbar.Brand>
+        <Navbar.Brand >Hospital Inventory</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto mx-5">
