@@ -52,16 +52,7 @@ function medform() {
       },
     });
 
-    const handleSubmit = (values) =>{
-      console.log(values);
-      setShow(true);
-    }
 
-    const handleShow = () => setShow(true);
-    const handleClose = () => {
-      setShow(false)
-      console.log(show);};
-   
 
   const [inputs, setInputs] = useState({});
   const handleSubmit = (event) => {
