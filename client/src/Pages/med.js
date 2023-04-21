@@ -8,6 +8,8 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
+import { MDBCol, MDBFormInline, MDBBtn } from "mdbreact";
+import Button from 'react-bootstrap/esm/Button';
 
 function med() {
 
@@ -33,11 +35,24 @@ function med() {
 
   const [filter,setFilter] = useState("")
 
+  // const submitName = ()=>{
+  //   fetchMedicine()
+  // }
+
   return (
     <div>
     <FloatingLabel controlId="floatingPassword" label="Search">
-        <Form.Control type="text" placeholder="Search" />
+        <Form.Control  onChange={(e)=>{ setSearchMedicine({...searchMedicine, name:e.target.value})}} type="text" placeholder="Search" />
+        {/* <Button type="submit" onSubmit={submitName()}></Button> */}
       </FloatingLabel>
+      {/* <MDBCol md="12">
+      <MDBFormInline className="md-form mr-auto mb-4">
+      <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
+        <MDBBtn color="unique" rounded size="sm" type="submit" className="mr-auto" onSubmit={searchName}>
+          Search
+        </MDBBtn>
+        </MDBFormInline>
+      </MDBCol> */}
       <DropdownButton id="dropdown-basic-button" title={(filter!="")?(`${filter}`):("Filter-by")}>
       <Dropdown.Item  onClick={()=>{
           setFilter("quantity") 
