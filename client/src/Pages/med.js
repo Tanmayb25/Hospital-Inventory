@@ -20,23 +20,39 @@ function med() {
   const [medicines,setMedicine] = useState([])
 
   useEffect(()=>{
+    fetchMedicine()
+  },[searchMedicine])
+
+  const fetchMedicine = () =>{
     getMedicine(searchMedicine).then((result)=>{
       setMedicine(result)
     }).catch((err)=>{
-      toast.error('Problem while generating OTP!')
+      toast.error(`THERE WAS AN ERROR ${err.msg}`)
     })
-  },[])
+  }
+
+  const [filter,setFilter] = useState("")
+
   return (
     <div>
     <FloatingLabel controlId="floatingPassword" label="Search">
         <Form.Control type="text" placeholder="Search" />
       </FloatingLabel>
-      <DropdownButton id="dropdown-basic-button" title="Dropdown button">
-      <Dropdown.Item onClick={()=>{console.log("hello");}}>Action</Dropdown.Item>
-      <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-      <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+      <DropdownButton id="dropdown-basic-button" title={(filter!="")?(`${filter}`):("Filter-by")}>
+      <Dropdown.Item  onClick={()=>{
+          setFilter("quantity") 
+          setSearchMedicine({...searchMedicine, sortBy:"quantity"})          
+        }}>Quantity</Dropdown.Item>
+      <Dropdown.Item onClick={()=>{
+          setFilter("Expity-Date") 
+          setSearchMedicine({...searchMedicine, sortBy:"expiryDate"})          
+        }}>Expiry-Date</Dropdown.Item>
+        <Dropdown.Item onClick={()=>{
+          setFilter("") 
+          setSearchMedicine({...searchMedicine, sortBy:""})          
+        }}>None</Dropdown.Item>
     </DropdownButton>
-      <Medform/>
+      {/* <Medform/> */}
     <Table striped>
       <thead>
         <tr>
