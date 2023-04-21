@@ -8,6 +8,9 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
+import {
+  Link
+} from "react-router-dom";
 
 function med() {
 
@@ -36,7 +39,7 @@ function med() {
       <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
       <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
     </DropdownButton>
-      <Medform/>
+    <Link  to="/Medicineform" ><div>Add medicine</div></Link>
     <Table striped>
       <thead>
         <tr>
