@@ -1,6 +1,7 @@
 import React from 'react'
 import { Formik, useFormik } from 'formik';
 import { useState } from 'react';
+
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
@@ -61,64 +62,40 @@ function medform() {
       setShow(false)
       console.log(show);};
    
+
+  const [inputs, setInputs] = useState({});
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert(inputs);
+  }
   return (
     <div>
-      <Button variant="primary" onClick={handleShow}>
-        Add Medicine
-      </Button>
-      <Formik initialValues={{ name:"", type:"", expiryDate:"", quantity:""}} validationSchema={validateMedForm}>
-      {({values,errors,handleChange,handleSubmit})=>
-      (<Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Input form</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form >
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-              type="text"
-              placeholder="name of the medicine"
-              value={values.name}
-              onChange={handleChange}
-              />
-              <Form.Label>Type</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Type of medicine"
-                value={values.type}
-                onChange={handleChange}
-                autoFocus
-              />
-              <Form.Label>Quantity</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder="Quantity"
-                value={values.quantity}
-                onChange={handleChange}
-                autoFocus
-              />
-              <Form.Label>Expiry date</Form.Label>
-              <Form.Control
-                type="date"
-                placeholder="DDMMYYYY"
-                value={values.expiryDate}
-                onChange={handleChange}
-                autoFocus
-              />
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button  variant="primary" type="submit" onSubmit={handleSubmit(values)} >
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
-      )}
-      </Formik>
-   
-
+   <form onSubmit={handleSubmit}>
+    <label>Name
+    <input type="text"/>
+    </label>
+    <label>type
+    <input type="text"/>
+    </label>
+    <label>Quantity
+    <input type="number"/>
+    </label>
+    <label>Dosage Form
+    <input type="text"/>
+    </label>
+    <label>Storage Requirements
+    <input type="text"/>
+    </label>
+    <label>Expiry Date
+    <input type="Date"/>
+    </label>
+    <label>Manufacturer
+    <input type="text"/>
+    </label>
+    <input type="submit" />
+   </form>
+  
+      
 
          
     </div>

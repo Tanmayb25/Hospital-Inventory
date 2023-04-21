@@ -10,6 +10,9 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import { MDBCol, MDBFormInline, MDBBtn } from "mdbreact";
 import Button from 'react-bootstrap/esm/Button';
+import {
+  Link
+} from "react-router-dom";
 
 function med() {
 
@@ -67,7 +70,7 @@ function med() {
           setSearchMedicine({...searchMedicine, sortBy:""})          
         }}>None</Dropdown.Item>
     </DropdownButton>
-      {/* <Medform/> */}
+    <Link  to="/Medicineform" ><div>Add medicine</div></Link>
     <Table striped>
       <thead>
         <tr>
