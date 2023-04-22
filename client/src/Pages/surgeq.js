@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import {toast, Toaster } from 'react-hot-toast';
 import { getSurgicalEquipment } from '../helper/helper';
-import Surgicaleqform from '../components/surgicaleqform';
-
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import {
+  Link
+} from "react-router-dom";
 
 
 function surgeq() {
@@ -15,18 +18,35 @@ function surgeq() {
 
   const [surgicalEquipment,setSurgicalEquipment] = useState([])
 
-  useEffect(()=>{
+  const fetchSurgicalEquipment = () => {
     getSurgicalEquipment(searchSurgicalEquimpent).then((result)=>{
       setSurgicalEquipment(result)
     }).catch((err)=>{
       toast.error(`THERE WAS SOME PROBLEM: ${err.msg}`)
     })
-  },[])
+  }
 
+  useEffect(()=>{
+    fetchSurgicalEquipment()
+  },[searchSurgicalEquimpent])
+
+  const [filter,setFilter] = useState("")
 
   return (
     <div>
-<Surgicaleqform/>
+      <Toaster position='top-center' reverseOrder={false}></Toaster>
+
+      <DropdownButton id="dropdown-basic-button" title={(filter!="")?(`${filter}`):("Filter-by")}>
+      <Dropdown.Item  onClick={()=>{
+          setFilter("quantity") 
+          setSearchSurgicalEquimpent({...searchSurgicalEquimpent, sortBy:"quantity"})          
+        }}>Quantity</Dropdown.Item>
+        <Dropdown.Item onClick={()=>{
+          setFilter("") 
+          setSearchSurgicalEquimpent({...searchSurgicalEquimpent, sortBy:""})          
+        }}>None</Dropdown.Item>
+    </DropdownButton>
+    <Link  to="/SurgicalEqform" ><div>Add surgical-equipment</div></Link>
       <Table striped>
       <thead>
         <tr>

@@ -3,13 +3,10 @@ import Table from 'react-bootstrap/Table';
 import { useState } from 'react';
 import { getMedicine } from '../helper/helper';
 import toast, { Toaster } from 'react-hot-toast';
-import Medform from '../components/medform';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
-import { MDBCol, MDBFormInline, MDBBtn } from "mdbreact";
-import Button from 'react-bootstrap/esm/Button';
 import {
   Link
 } from "react-router-dom";
@@ -44,6 +41,8 @@ function med() {
 
   return (
     <div>
+      <Toaster position='top-center' reverseOrder={false}></Toaster>
+
     <FloatingLabel controlId="floatingPassword" label="Search">
         <Form.Control  onChange={(e)=>{ setSearchMedicine({...searchMedicine, name:e.target.value})}} type="text" placeholder="Search" />
         {/* <Button type="submit" onSubmit={submitName()}></Button> */}

@@ -2,8 +2,6 @@
 import mongoose from "mongoose";
 import { medicalDeviceSchema } from "../models/medicalDevice.js";
 
-import { resolve } from "path";
-import { rejects } from "assert";
 
 const MedicalDevice = new mongoose.model("MedicalDevice",medicalDeviceSchema);
 
@@ -16,10 +14,10 @@ export async function deleteMedicalDevice(req,res){
                     reject(new Error(err))
                 }
                 if(!deletedmedicalDevice){
-                    reject("NO SUCH LAB EQUIPMENT")
+                    reject("NO SUCH MEDICAL DEVICE")
                 }
                 console.log(deletedmedicalDevice);
-                resolve("LAB EQUIPMENT DELETED")
+                resolve("MEDICAL DEVICE DELETED")
             })
         })
 

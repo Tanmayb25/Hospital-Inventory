@@ -95,7 +95,7 @@ export async function getLabEquipments(req,res){
         }
         else if(sortBy!="")
         {
-                const labEquipments = await LabEquipment.find({type});
+                const labEquipments = await LabEquipment.find({});
                 let labEquipmentsfound
                 if(sortBy==="quantity")
                 {
