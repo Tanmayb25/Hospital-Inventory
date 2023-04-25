@@ -3,7 +3,6 @@ import Table from 'react-bootstrap/Table';
 import { useState } from 'react';
 import { getMedicine } from '../helper/helper';
 import toast, { Toaster } from 'react-hot-toast';
-import Medform from '../components/medform';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -36,11 +35,26 @@ function med() {
 
   const [filter,setFilter] = useState("")
 
+  // const submitName = ()=>{
+  //   fetchMedicine()
+  // }
+
   return (
     <div>
+      <Toaster position='top-center' reverseOrder={false}></Toaster>
+
     <FloatingLabel controlId="floatingPassword" label="Search">
-        <Form.Control type="text" placeholder="Search" />
+        <Form.Control  onChange={(e)=>{ setSearchMedicine({...searchMedicine, name:e.target.value})}} type="text" placeholder="Search" />
+        {/* <Button type="submit" onSubmit={submitName()}></Button> */}
       </FloatingLabel>
+      {/* <MDBCol md="12">
+      <MDBFormInline className="md-form mr-auto mb-4">
+      <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
+        <MDBBtn color="unique" rounded size="sm" type="submit" className="mr-auto" onSubmit={searchName}>
+          Search
+        </MDBBtn>
+        </MDBFormInline>
+      </MDBCol> */}
       <DropdownButton id="dropdown-basic-button" title={(filter!="")?(`${filter}`):("Filter-by")}>
       <Dropdown.Item  onClick={()=>{
           setFilter("quantity") 

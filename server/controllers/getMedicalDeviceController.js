@@ -7,14 +7,14 @@ const MedicalDevice = mongoose.model("MedicalDevices",medicalDeviceSchema)
 export async function getMedicalDevice(req,res){
     try
     {
-        const {name,type,sortBy} = req.body
+        const {name,type,sortBy} = req.query.searchMedicalDevice
         if(name==="" && type==="" && sortBy==="")
         {
             
             const medicalDevicefound = new Promise((resolve,reject)=>{
                 MedicalDevice.find({},function(err,medicalDevices){
                     if(err){
-                        reject(new Error(`THERE WAS AN ERROR ${err}`))
+                        reject(new Error(err))
                     }
                     if(medicalDevices){
                         resolve(medicalDevices)
@@ -33,7 +33,7 @@ export async function getMedicalDevice(req,res){
            const medicalDevicefound = new Promise((resolve,reject)=>{
                     MedicalDevice.findOne({name},function(err,medicalDevice) {
                     if(err){
-                        reject(new Error(`THERE WAS AN ERROR ${err}`))
+                        reject(new Error(err))
                     }
                     if(!medicalDevice){
                         reject("THERE IS NO SUCH LAB EQUIPMENT")
@@ -78,7 +78,7 @@ export async function getMedicalDevice(req,res){
                 const medicalDevicefound = new Promise((resolve,reject)=>{
                     MedicalDevice.find({type},function(err,medicalDevice) {
                                 if(err){
-                                    reject(new Error(`THERE WAS AN ERROR ${err}`))
+                                    reject(new Error(err))
                                 }
                                 if(!medicalDevice){
                                    reject("THERE ARE NO SUCH LAB EQUIPMENT")
@@ -95,7 +95,7 @@ export async function getMedicalDevice(req,res){
         }
         else if(sortBy!="")
         {
-                const medicalDevice = await MedicalDevice.find({type});
+                const medicalDevice = await MedicalDevice.find({});
                 let medicalDevicefound
                 if(sortBy==="quantity")
                 {

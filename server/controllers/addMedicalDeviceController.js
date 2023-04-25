@@ -16,7 +16,7 @@ export async function addMedicalDevice(req,res){
     const medicalDeviceExist = new Promise((resolve,reject)=>{
         MedicalDevice.findOne({name},function(err,medicalDevice){
             if(err){
-                reject(new Error({error:err}))
+                reject(new Error(err))
             }
             if(medicalDevice){
                 reject("medicalDevice alread exist in database")
@@ -32,7 +32,6 @@ export async function addMedicalDevice(req,res){
                 })
                 medicalDevice.save()
                     .then(result => {
-                        console.log(result);
                         res.status(201).send({ msg: "medicalDevice added in database Successfully"})
                     })
                     .catch(error => res.status(500).send({msg:`there is an error: ${error}`}))

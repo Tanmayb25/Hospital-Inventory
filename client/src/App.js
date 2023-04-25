@@ -13,7 +13,9 @@ import Meddev from './Pages/meddev.js';
 import Surgeq from './Pages/surgeq.js';
 import Labeq from './Pages/labeq.js';
 import Medform from './components/medform';
-
+import SurgicalEquipmentForm from './components/surgicaleqform';
+import LabEquipmentForm from './components/labeqform';
+import MedicalDeviceForm from './components/medDeviceForm';
 function App() {
 
   return (
@@ -29,6 +31,9 @@ function App() {
             <Route exact path="/lab_equip" element={<Labeq/>}/>
             <Route exact path="/Med_dev" element={<Meddev/>}/>
             <Route exact path="/Medicineform" element={<Medform/>}/>
+            <Route exact path="/SurgicalEqform" element={<SurgicalEquipmentForm/>}/>
+            <Route exact path="/LabEqform" element={<LabEquipmentForm/>}/>
+            <Route exact path="/MedDeviceform" element={<MedicalDeviceForm/>}/>
         </Routes>
         
     </Router>
