@@ -4,8 +4,7 @@ import { useState } from 'react';
 import { getMedicine } from '../helper/helper';
 import toast, { Toaster } from 'react-hot-toast';
 import Medform from '../components/medform';
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
-import Form from 'react-bootstrap/Form';
+
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import {
@@ -38,9 +37,8 @@ function med() {
 
   return (
     <div>
-    <FloatingLabel controlId="floatingPassword" label="Search">
-        <Form.Control type="text" placeholder="Search" />
-      </FloatingLabel>
+    <input type="search" placeholder="Search text here"></input>
+   
       <DropdownButton id="dropdown-basic-button" title={(filter!="")?(`${filter}`):("Filter-by")}>
       <Dropdown.Item  onClick={()=>{
           setFilter("quantity") 
@@ -72,7 +70,10 @@ function med() {
           <td>{index+1}</td>
           <td>{medicine.name}</td>
           <td>{medicine.type}</td>
-          <td>{medicine.quantity}</td>
+          <td>{medicine.quantity}
+          <input type="number"/>
+          <input type="submit"/>
+          </td>
           <td>{medicine.expiryDate}</td>
         </tr>
         ))}
