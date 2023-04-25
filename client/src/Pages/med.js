@@ -75,8 +75,8 @@ function med() {
           <td>{medicine.name}</td>
           <td>{medicine.type}</td>
           <td>{medicine.quantity}
-          <input type="number"/>
-          <input type="submit"/>
+          <input type="number" value={medicine.quantity} onChange={(e)=>console.log(e.target.value)}/>
+          <input type="submit" />
           </td>
           <td>{medicine.expiryDate}</td>
         </tr>
