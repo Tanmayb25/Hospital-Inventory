@@ -35,6 +35,10 @@ function med() {
 
   const [filter,setFilter] = useState("")
 
+  // const submitName = ()=>{
+  //   fetchMedicine()
+  // }
+
   return (
     <div>
     <input type="search" placeholder="Search text here"></input>
