@@ -43,10 +43,9 @@ function med() {
     <div>
       <Toaster position='top-center' reverseOrder={false}></Toaster>
 
-    <FloatingLabel controlId="floatingPassword" label="Search">
-        <Form.Control  onChange={(e)=>{ setSearchMedicine({...searchMedicine, name:e.target.value})}} type="text" placeholder="Search" />
+    <input  onChange={(e)=>{ setSearchMedicine({...searchMedicine, name:e.target.value})}} type="search" placeholder="Search text here"></input>
         {/* <Button type="submit" onSubmit={submitName()}></Button> */}
-      </FloatingLabel>
+   
       {/* <MDBCol md="12">
       <MDBFormInline className="md-form mr-auto mb-4">
       <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
@@ -86,7 +85,10 @@ function med() {
           <td>{index+1}</td>
           <td>{medicine.name}</td>
           <td>{medicine.type}</td>
-          <td>{medicine.quantity}</td>
+          <td>{medicine.quantity}
+          <input type="number" value={medicine.quantity} onChange={(e)=>console.log(e.target.value)}/>
+          <input type="submit" />
+          </td>
           <td>{medicine.expiryDate}</td>
         </tr>
         ))}
