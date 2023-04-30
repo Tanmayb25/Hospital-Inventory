@@ -8,6 +8,8 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import {
   Link
 } from "react-router-dom";
+import Popup from 'reactjs-popup';
+import { deleteMedicalDevices,editMedicalDevices } from '../helper/helper';
 
 function meddev() {
 
@@ -19,6 +21,7 @@ function meddev() {
  
   const [MedicalDevice,setMedicalDevice] = useState([])
   const [name,setName] = useState('')
+  const [quantity,setQuantity] = useState(0)
   
   useEffect(()=>{
     fetchMedicalDevice()
@@ -30,6 +33,35 @@ function meddev() {
     }).catch((err)=>{
       toast.error(`${err.msg}`)
     })
+  }
+
+  const editQuantity = (_id,initialQuantity)=>{
+    if(quantity>initialQuantity)
+    {
+      toast.error("There is an error: Used quantity greater than present in stalk")
+    }
+    else
+    {
+        const newQuantity = initialQuantity - quantity
+        if(newQuantity!=0)
+        {
+          editMedicalDevices(_id,newQuantity).then((msg)=>{
+            toast.success("Quantity changed!!")
+          fetchMedicalDevice()
+          }).catch((err)=>{
+            toast.error(`${err.msg}`)
+          }) 
+        }
+        else
+        {
+          deleteMedicalDevices(_id).then((msg)=>{
+            toast.success(`${msg}`)
+          fetchMedicalDevice()
+          }).catch((err)=>{
+            toast.error(`${err.msg}`)
+          })
+        } 
+    }
   }
 
   
@@ -72,8 +104,6 @@ function meddev() {
           <th>Quantity</th>
           <th>Price</th>
           <th>Date Added</th>
-          <th>Description</th>
-          <th>Manufacturer</th>
         </tr>
       </thead>
       <tbody>
@@ -85,8 +115,31 @@ function meddev() {
           <td>{MedicalDevice.quantity}</td>
           <td>{MedicalDevice.price}</td>
           <td>{MedicalDevice.dateAdded}</td>
-          <td>{MedicalDevice.description}</td>
-          <td>{MedicalDevice.manufacturer}</td>
+          <td>
+          <Popup trigger=
+                {<button> Click to enter used quantity </button>}
+                modal nested>
+                {
+                    close => (
+                        <div >
+                            <div >
+                            <input type='number' onChange={(e)=>{setQuantity(e.target.value)}}/>
+                            </div>
+                            <div>
+                                <button onClick=
+                                    {() =>{
+                                      editQuantity(MedicalDevice._id,MedicalDevice.quantity);
+                                      setQuantity(0)
+                                      close()
+                                    } }>
+                                        Close modal
+                                </button>
+                            </div>
+                        </div>
+                    )
+                }
+            </Popup>
+          </td>
         </tr>
         ))) : (  <tr >
           <td>{1}</td>
@@ -95,9 +148,33 @@ function meddev() {
           <td>{MedicalDevice.quantity}</td>
           <td>{MedicalDevice.price}</td>
           <td>{MedicalDevice.dateAdded}</td>
-          <td>{MedicalDevice.description}</td>
-          <td>{MedicalDevice.manufacturer}</td>
-        </tr>)}
+          <td>
+          <Popup trigger=
+                {<button> Click to enter used quantity </button>}
+                modal nested>
+                {
+                    close => (
+                        <div >
+                            <div >
+                            <input type='number' onChange={(e)=>{setQuantity(e.target.value)}}/>
+                            </div>
+                            <div>
+                                <button onClick=
+                                    {() =>{
+                                      editQuantity(MedicalDevice._id,MedicalDevice.quantity);
+                                      setQuantity(0)
+                                      close()
+                                    } }>
+                                        Close modal
+                                </button>
+                            </div>
+                        </div>
+                    )
+                }
+            </Popup>
+          </td>
+        </tr>
+        )}
       </tbody>
     </Table>
 

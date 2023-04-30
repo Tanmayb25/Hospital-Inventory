@@ -144,11 +144,25 @@ export async function editLabEquipment(_id,quantity){
     }
 }
 
+
+
 //edit SurgicalEquipment
 export async function editSurgicalEquipment(_id,quantity,used){
     try{
         const  value = {_id,quantity,used}
         const {data:{msg}} = await axios.put('http://localhost:8080/api/editSurgicalEquipment',value)
+        return Promise.resolve(msg)
+    }catch(err)
+    {
+        return Promise.reject(err.response.data)
+    }
+}
+
+//edit MedicalDevices
+export async function editMedicalDevices(_id,quantity){
+    try{
+        const  value = {_id,quantity}
+        const {data:{msg}} = await axios.put('http://localhost:8080/api/editMedicalDevice',value)
         return Promise.resolve(msg)
     }catch(err)
     {
@@ -182,6 +196,17 @@ export async function deleteLabEquipment(_id){
 export async function deleteSurgicalEquipment(_id){
     try{
         const {data:{msg}} = await axios.delete('http://localhost:8080/api/deleteSurgicalEquipment',{params:{_id:_id}})
+        return Promise.resolve(msg)
+    }catch(err)
+    {
+        return Promise.reject(err.response.data)
+    }
+}
+
+//delete MedicalDevices
+export async function deleteMedicalDevices(_id){
+    try{
+        const {data:{msg}} = await axios.delete('http://localhost:8080/api/deleteMedicalDevice',{params:{_id:_id}})
         return Promise.resolve(msg)
     }catch(err)
     {

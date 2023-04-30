@@ -6,7 +6,7 @@ import { medicalDeviceSchema } from "../models/medicalDevice.js";
 const MedicalDevice = new mongoose.model("MedicalDevice",medicalDeviceSchema);
 
 export async function deleteMedicalDevice(req,res){
-    const {_id} = req.body
+    const {_id} = req.query
     try{
         const medicalDevicefound = new Promise((resolve,reject)=>{
             MedicalDevice.findByIdAndDelete(_id,function(err,deletedmedicalDevice){
@@ -16,8 +16,7 @@ export async function deleteMedicalDevice(req,res){
                 if(!deletedmedicalDevice){
                     reject("NO SUCH MEDICAL DEVICE")
                 }
-                console.log(deletedmedicalDevice);
-                resolve("MEDICAL DEVICE DELETED")
+                resolve(`Stalk of ${deleteMedicalDevice} is over and it has been deleted from database`)
             })
         })
 

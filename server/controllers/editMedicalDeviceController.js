@@ -18,7 +18,7 @@ export async function editMedicalDevice(req,res){
                 if(!upadatedmedicalDevice){
                     reject("NO SUCH LAB EQUIPMENT")
                 }
-                resolve(upadatedmedicalDevice)
+                resolve('Quantity changed successfully')
             })
         })
 
@@ -29,6 +29,5 @@ export async function editMedicalDevice(req,res){
         })
     }catch(err){
         res.status(505).send({msg:`There was some error: ${err}`})
-    }
-    
+    }  
 }
