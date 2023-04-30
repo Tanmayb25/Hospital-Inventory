@@ -1,4 +1,27 @@
-.cardstyle{
 
-    
+
+.cardstyle{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 10px 10px;
+    margin: 5px;
+}
+.cardstyle:hover{
+    background-color: rgb(195, 192, 192);
+}
+img{
+    width: 100px;
+    height: 100px;
+}
+.imgarea{
+    padding-right: 30px;
+}
+.title{
+    padding-left: 20px;
+    font-size: 50px;
+    color: black;
+    font-family:'Times New Roman', Times, serif;
 }

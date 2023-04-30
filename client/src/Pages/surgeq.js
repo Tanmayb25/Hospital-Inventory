@@ -19,7 +19,7 @@ function surgeq() {
 
   const [surgicalEquipment,setSurgicalEquipment] = useState([])
   const [name,setName] = useState('')
-  const [quantityUsed,setQuantityUsed] = useState('')
+  const [quantityUsed,setQuantityUsed] = useState(0)
   
   
   const fetchSurgicalEquipment = () => {
@@ -77,21 +77,20 @@ function surgeq() {
       <DropdownButton id="dropdown-basic-button" title={(filter!="")?(`${filter}`):("Filter-by")}>
       <Dropdown.Item  onClick={()=>{
           setFilter("quantity") 
-          setSearchSurgicalEquimpent({...searchSurgicalEquimpent, sortBy:"quantity"})          
+          setSearchSurgicalEquimpent({...searchSurgicalEquimpent, sortBy:"Unused"})          
         }}>Quantity</Dropdown.Item>
         <Dropdown.Item onClick={()=>{
           setFilter("") 
           setSearchSurgicalEquimpent({...searchSurgicalEquimpent, sortBy:""})          
         }}>None</Dropdown.Item>
     </DropdownButton>
-    <Link  to="/SurgicalEqform" ><div>Add surgical-equipment</div></Link>
+    <button><Link  to="/SurgicalEqform" ><div>Add surgical-equipment</div></Link></button>
       <Table striped>
       <thead>
         <tr>
           <th>#</th>
           <th>Name</th>
           <th>Catagorie</th>
-          <th>Quantity</th>
           <th>Used</th>
           <th>Unused</th>
         </tr>
@@ -102,7 +101,6 @@ function surgeq() {
           <td>{index+1}</td>
           <td>{surgicalEquipment.name}</td>
           <td>{surgicalEquipment.catagorie}</td>
-          <td>{surgicalEquipment.quantity}</td>
           <td>{surgicalEquipment.used}</td>
           <td>{surgicalEquipment.unused}</td>
           <td>
@@ -119,6 +117,7 @@ function surgeq() {
                                 <button onClick=
                                     {() =>{
                                       editQuantity(surgicalEquipment._id,surgicalEquipment.quantity,surgicalEquipment.used);
+                                      setQuantityUsed(0)
                                       close()
                                     } }>
                                         Close 
@@ -151,6 +150,7 @@ function surgeq() {
                                 <button onClick=
                                     {() =>{
                                       editQuantity(surgicalEquipment._id,surgicalEquipment.quantity,surgicalEquipment.used);
+                                      setQuantityUsed(0)
                                       close()
                                     } }>
                                         Close 

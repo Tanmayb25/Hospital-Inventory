@@ -82,6 +82,8 @@ export async function addMedicine(values){
 //add surgicalEquipment
 export async function addSurgicalEquipment(values){
     try {
+        const unused = values.quantity - values.used
+        values = {...values,unused:unused}
         const {data:{msg},status} = await axios.post("http://localhost:8080/api/addSurgicalEquipment",values)
         if(status===201)
         {

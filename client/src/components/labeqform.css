@@ -1,0 +1,23 @@
+
+input{
+    width:85%;
+    height: 45px;
+    align-self: auto;
+    margin:10px;
+
+}
+input:focus {
+    border:3px solid rgb(69, 69, 243);
+    background-color: rgba(125, 188, 255, 0.522);
+}
+button{
+    background-color: rgb(110, 185, 255);
+    margin:1%;
+    border-radius: 5px;
+    border: 0px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    min-width: 100px;
+}
+button:hover{
+    background-color: rgb(6, 118, 223);
+}

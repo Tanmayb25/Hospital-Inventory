@@ -62,8 +62,6 @@ function SurgicalEquipmentForm() {
     <input type="number" {...formik.getFieldProps('used')} placeholder='Used*'/>
     {formik.errors.used && <p>{formik.errors.used}</p>}
 
-    <input type="number"  value={formik.values.quantity-formik.values.used} {...formik.getFieldProps('unused')} />
-    {formik.errors.unused && <p>{formik.errors.unused}</p>}
 
     <button type='submit'>SAVE SURGICAL-EQUIPMENT DATA</button>
    </form>    
