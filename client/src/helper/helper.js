@@ -117,3 +117,72 @@ export async function addMedicalDevice(values){
         return  Promise.reject(error.response.data)
     }
 }
+
+//edit medicine
+export async function editMedicine(_id,quantity){
+    try{
+        const  value = {_id,quantity}
+        const {data:{msg}} = await axios.put('http://localhost:8080/api/editMedicines',value)
+        return Promise.resolve(msg)
+    }catch(err)
+    {
+        return Promise.reject(err.response.data)
+    }
+}
+
+//edit lab-equipment
+export async function editLabEquipment(_id,quantity){
+    try{
+        const  value = {_id,quantity}
+        const {data:{msg}} = await axios.put('http://localhost:8080/api/editLabEquipment',value)
+        return Promise.resolve(msg)
+    }catch(err)
+    {
+        return Promise.reject(err.response.data)
+    }
+}
+
+//edit SurgicalEquipment
+export async function editSurgicalEquipment(_id,quantity,used){
+    try{
+        const  value = {_id,quantity,used}
+        const {data:{msg}} = await axios.put('http://localhost:8080/api/editSurgicalEquipment',value)
+        return Promise.resolve(msg)
+    }catch(err)
+    {
+        return Promise.reject(err.response.data)
+    }
+}
+
+//delete medicine
+export async function deleteMedicine(_id){
+    try{
+        const {data:{msg}} = await axios.delete('http://localhost:8080/api/deleteMedicines',{params:{_id:_id}})
+        return Promise.resolve(msg)
+    }catch(err)
+    {
+        return Promise.reject(err.response.data)
+    }
+}
+
+//delete LabEquipment
+export async function deleteLabEquipment(_id){
+    try{
+        const {data:{msg}} = await axios.delete('http://localhost:8080/api/deleteLabEquipment',{params:{_id:_id}})
+        return Promise.resolve(msg)
+    }catch(err)
+    {
+        return Promise.reject(err.response.data)
+    }
+}
+
+//delete SurgicalEquipmen
+export async function deleteSurgicalEquipment(_id){
+    try{
+        const {data:{msg}} = await axios.delete('http://localhost:8080/api/deleteSurgicalEquipment',{params:{_id:_id}})
+        return Promise.resolve(msg)
+    }catch(err)
+    {
+        return Promise.reject(err.response.data)
+    }
+}

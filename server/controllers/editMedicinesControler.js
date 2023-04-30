@@ -17,7 +17,7 @@ export async function editMedicines(req,res){
                 if(!upadatedMedicine){
                     reject("Something went wrong")
                 }
-                resolve(upadatedMedicine)
+                resolve("EDITED SUCCESSFULLY")
             })
         })
 

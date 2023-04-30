@@ -8,7 +8,7 @@ import { log } from "console";
 const Medicine = new mongoose.model("Medicine",medicineSchema);
 
 export async function deleteMedicines(req,res){
-    const {_id} = req.body
+    const {_id} = req.query
     try{
         const medicinefound = new Promise((resolve,reject)=>{
             Medicine.findByIdAndDelete(_id,function(err,deletedMedicine){
@@ -18,15 +18,14 @@ export async function deleteMedicines(req,res){
                 if(!deletedMedicine){
                     reject("NO SUCH MEDICINE")
                 }
-                console.log(deletedMedicine); //test
-                resolve("MEDICINE DELETED")
+                resolve(deletedMedicine)
             })
         })
 
         medicinefound.then((result)=>{
-            res.status(201).send({msg:result})
+            res.status(201).send({msg:`Stalk of ${result.name} is over and its data is deleted form database`})
         }).catch((err)=>{
-            res.status(505).send({msg:`There was an error: ${err}`})
+            res.status(409).send({msg:`There was an error: ${err}`})
         })
     }catch(err){
         res.status(505).send({msg:`There was some error: ${err}`})

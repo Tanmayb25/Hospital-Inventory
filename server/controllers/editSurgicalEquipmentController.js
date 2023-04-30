@@ -18,14 +18,14 @@ export async function editSurgicalEquipment(req,res){
                 if(!upadatedSurgicalEquipment){
                     reject("Something went wrong")
                 }
-                resolve(upadatedSurgicalEquipment)
+                resolve("Edited Successfully")
             })
         })
 
         surgicalEquipmentfound.then((result)=>{
             res.status(201).send({msg:result})
         }).catch((err)=>{
-            res.status(505).send({msg:`There was an error: ${err}`})
+            res.status(409).send({msg:`There was an error: ${err}`})
         })
     }catch(err){
         res.status(505).send({msg:`There was some error: ${err}`})

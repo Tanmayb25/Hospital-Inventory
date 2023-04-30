@@ -1,10 +1,9 @@
-import React from 'react';
+import React from 'react'
 import {  useFormik } from 'formik';
 import { addMedicine } from '../helper/helper';
 import * as Yup from 'yup';
 import toast, { Toaster } from 'react-hot-toast';
-import {  useNavigate } from 'react-router-dom';
-
+import {  useNavigate } from 'react-router-dom' 
 
 function medform() {
     const navigate = useNavigate()

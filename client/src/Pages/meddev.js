@@ -18,7 +18,8 @@ function meddev() {
   })
  
   const [MedicalDevice,setMedicalDevice] = useState([])
-
+  const [name,setName] = useState('')
+  
   useEffect(()=>{
     fetchMedicalDevice()
   },[searchMedicalDevice])
@@ -37,6 +38,11 @@ function meddev() {
   return (
     <div>
       <Toaster position='top-center' reverseOrder={false}></Toaster>
+      <input  value={name} onChange={(e)=>{setName(e.target.value)}} type="search" placeholder="Search text here" ></input>
+      <button type='submit' onClick={()=>{setSearchMedicalDevice({...searchMedicalDevice,name:name})}}>Search Medical-Device</button>
+      <button type='submit' onClick={()=>{
+       setSearchMedicalDevice({...searchMedicalDevice,name:""})
+       setName("")}}>Clear Search</button>
       <DropdownButton id="dropdown-basic-button" title={(filter!="")?(`${filter}`):("Filter-by")}>
       <Dropdown.Item  onClick={()=>{
           setFilter("quantity") 
@@ -71,7 +77,7 @@ function meddev() {
         </tr>
       </thead>
       <tbody>
-      { Array.isArray(MedicalDevice) && MedicalDevice.map((MedicalDevice,index) => (
+      { Array.isArray(MedicalDevice) ? (MedicalDevice.map((MedicalDevice,index) => (
             <tr key={index}>
           <td>{index+1}</td>
           <td>{MedicalDevice.name}</td>
@@ -82,7 +88,16 @@ function meddev() {
           <td>{MedicalDevice.description}</td>
           <td>{MedicalDevice.manufacturer}</td>
         </tr>
-        ))}
+        ))) : (  <tr >
+          <td>{1}</td>
+          <td>{MedicalDevice.name}</td>
+          <td>{MedicalDevice.type}</td>
+          <td>{MedicalDevice.quantity}</td>
+          <td>{MedicalDevice.price}</td>
+          <td>{MedicalDevice.dateAdded}</td>
+          <td>{MedicalDevice.description}</td>
+          <td>{MedicalDevice.manufacturer}</td>
+        </tr>)}
       </tbody>
     </Table>
 

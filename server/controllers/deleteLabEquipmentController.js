@@ -7,7 +7,7 @@ import { rejects } from "assert";
 const LabEquipment = new mongoose.model("LabEquipment",labEquipmentSchema);
 
 export async function deleteLabEquipment(req,res){
-    const {_id} = req.body
+    const {_id} = req.query
     try{
         const labEquipmentfound = new Promise((resolve,reject)=>{
             LabEquipment.findByIdAndDelete(_id,function(err,deletedlabEquipment){
@@ -18,14 +18,14 @@ export async function deleteLabEquipment(req,res){
                     reject("NO SUCH LAB EQUIPMENT")
                 }
                 console.log(deletedlabEquipment);
-                resolve("LAB EQUIPMENT DELETED")
+                resolve(deletedlabEquipment)
             })
         })
 
         labEquipmentfound.then((result)=>{
-            res.status(201).send({msg:result})
+            res.status(201).send({msg:`Stalk of ${result.name} is over and it is deleted from database `})
         }).catch((err)=>{
-            res.status(505).send({msg:`There was an error: ${err}`})
+            res.status(409).send({msg:`There was an error: ${err}`})
         })
     }catch(err){
         res.status(505).send({msg:`There was some error: ${err}`})
