@@ -133,7 +133,6 @@ function surgeq() {
           <td>{1}</td>
           <td>{surgicalEquipment.name}</td>
           <td>{surgicalEquipment.catagorie}</td>
-          <td>{surgicalEquipment.quantity}</td>
           <td>{surgicalEquipment.used}</td>
           <td>{surgicalEquipment.unused}</td>
           <td>

@@ -45,6 +45,7 @@ function med() {
   }
 
 
+
   const editQuantity = (_id,initialQuantity)=>{
     if(quantity>initialQuantity)
     {
@@ -76,9 +77,12 @@ function med() {
 
   //const [filter,setFilter] = useState("")
 
+  //const [filter,setFilter] = useState("")
+
   // const submitName = ()=>{
   //   fetchMedicine()
   // }
+  
   
 const mystyle={
   margin:"10px",
@@ -95,6 +99,7 @@ const mystyle={
       
     
     <div>
+
 
       <DropdownButton id="dropdown-basic-button" title={(filter!="")?(`${filter}`):("Filter-by")}>
       <Dropdown.Item  onClick={()=>{
@@ -115,7 +120,9 @@ const mystyle={
     </DropdownButton>
 
     <button><Link  style={mystyle} to="/Medicineform" >Add medicine</Link></button>
+
     </div>
+
 
     <Table striped>
       <thead>
@@ -182,10 +189,7 @@ const mystyle={
           <td>{1}</td>
           <td>{medicines.name}</td>
           <td>{medicines.type}</td>
-          <td>{medicines.quantity}
-          <input type="number" value={medicines.quantity} onChange={(e)=>console.log(e.target.value)}/>
-          <input type="submit" />
-          </td>
+          <td>{medicines.quantity}</td>
           <td>{medicines.expiryDate}</td>
           <td>
           <Popup trigger=
