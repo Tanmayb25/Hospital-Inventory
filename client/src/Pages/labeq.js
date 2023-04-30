@@ -19,7 +19,7 @@ function labeq() {
     sortBy:""
   })
 
-  const [quantity,setQuantity] = useState('')
+  const [quantity,setQuantity] = useState(0)
   const [LabEquipment,setLabEquipment] = useState([])
   const [name,setName] = useState('')
   useEffect(()=>{
@@ -46,7 +46,7 @@ function labeq() {
         {
           editLabEquipment(_id,newQuantity).then((msg)=>{
             toast.success("Quantity changed!!")
-          // fetchLabEquipment()
+          fetchLabEquipment()
           }).catch((err)=>{
             toast.error(`${err.msg}`)
           }) 
@@ -55,13 +55,11 @@ function labeq() {
         {
           deleteLabEquipment(_id).then((msg)=>{
             toast.success(`${msg}`)
-          // fetchLabEquipment()
+          fetchLabEquipment()
           }).catch((err)=>{
             toast.error(`${err.msg}`)
           })
         } 
-        fetchLabEquipment()
-
     }
   }
 
@@ -93,7 +91,7 @@ function labeq() {
           setSearchLabEquipment({...searchLabEquipment, sortBy:""})          
         }}>None</Dropdown.Item>
     </DropdownButton>
-    <Link  to="/LabEqform" ><div>Add lab-equipment</div></Link>
+    <button><Link  to="/LabEqform" ><div>Add lab-equipment</div></Link></button>
     
     <Table striped>
       <thead>
@@ -129,6 +127,7 @@ function labeq() {
                                 <button onClick=
                                     {() =>{
                                       editQuantity(LabEquipment._id,LabEquipment.quantity);
+                                      setQuantity(0)
                                       close()
                                     } }>
                                         Close modal
@@ -161,6 +160,7 @@ function labeq() {
                                 <button onClick=
                                     {() =>{
                                       editQuantity(LabEquipment._id,LabEquipment.quantity);
+                                      setQuantity(0)
                                       close()
                                     } }>
                                         Close modal

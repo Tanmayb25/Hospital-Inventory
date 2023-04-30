@@ -3,8 +3,6 @@ import Table from 'react-bootstrap/Table';
 import { useState } from 'react';
 import { getMedicine } from '../helper/helper';
 import toast, { Toaster } from 'react-hot-toast';
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
-import Form from 'react-bootstrap/Form';
 
 // import Medform from '../components/medform';
 import "./med.css"
@@ -14,7 +12,6 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import {
   Link
 } from "react-router-dom";
-import Button from 'react-bootstrap/esm/Button';
 import Popup from 'reactjs-popup';
 import { editMedicine,deleteMedicine } from '../helper/helper';
 
@@ -28,12 +25,14 @@ function med() {
 
   const [filter,setFilter] = useState("")
   const [name,setName] = useState('')
-  const [quantity,setQuantity] = useState('')
+  const [quantity,setQuantity] = useState(0)
   const [medicines,setMedicine] = useState([])
 
   useEffect(()=>{
       fetchMedicine()
+      fetchMedicine()
   },[searchMedicine])
+
 
 
   const fetchMedicine = () =>{
@@ -41,8 +40,10 @@ function med() {
       setMedicine(result)
     }).catch((err)=>{
       toast.error(`${err.msg}`)
+      toast.error(`${err.msg}`)
     })
   }
+
 
 
   const editQuantity = (_id,initialQuantity)=>{
@@ -76,9 +77,12 @@ function med() {
 
   //const [filter,setFilter] = useState("")
 
+  //const [filter,setFilter] = useState("")
+
   // const submitName = ()=>{
   //   fetchMedicine()
   // }
+  
   
 const mystyle={
   margin:"10px",
@@ -96,23 +100,29 @@ const mystyle={
     
     <div>
 
+
       <DropdownButton id="dropdown-basic-button" title={(filter!="")?(`${filter}`):("Filter-by")}>
       <Dropdown.Item  onClick={()=>{
           setFilter("quantity") 
+          setSearchMedicine({...searchMedicine, sortBy:"quantity"}) 
           setSearchMedicine({...searchMedicine, sortBy:"quantity"}) 
         }}>Quantity</Dropdown.Item>
       <Dropdown.Item onClick={()=>{
           setFilter("Expity-Date") 
           setSearchMedicine({...searchMedicine,name:"", sortBy:"expiryDate"}) 
+          setSearchMedicine({...searchMedicine,name:"", sortBy:"expiryDate"}) 
         }}>Expiry-Date</Dropdown.Item>
         <Dropdown.Item onClick={()=>{
           setFilter("") 
+          setSearchMedicine({...searchMedicine,name:"", sortBy:""})  
           setSearchMedicine({...searchMedicine,name:"", sortBy:""})  
         }}>None</Dropdown.Item>
     </DropdownButton>
 
     <button><Link  style={mystyle} to="/Medicineform" >Add medicine</Link></button>
+
     </div>
+
 
     <Table striped>
       <thead>
@@ -134,8 +144,6 @@ const mystyle={
           <td>{medicine.quantity}
           {/* <input type="number" value={medicine.quantity} onChange={(e)=>console.log(e.target.value)}/>
           <input type="submit" /> */}
-          <input type="number" value={medicine.quantity} onChange={(e)=>console.log(e.target.value)} className="qtyadd"/>
-          <input type="submit" className="qtychange"/>
           </td>
           <td>{medicine.expiryDate}</td>
           {/* {(popupText===true) && (<td>
@@ -157,6 +165,7 @@ const mystyle={
                                 <button onClick=
                                     {() =>{
                                       editQuantity(medicine._id,medicine.quantity);
+                                      setQuantity(0);
                                       close()
                                     } }>
                                         Close 
@@ -167,16 +176,20 @@ const mystyle={
                 }
             </Popup>
             
+          {/* {(popupText===true) && (<td>
+            <input type='number' onChange={(e)=>{setQuantity(e.target.value)}}/>
+          </td>)} */}
+          {/* <Popup trigger={<button> Trigger</button>} position="left center">
+            <div><input type='number' onChange={(e)=>{setQuantity(e.target.value)}}/></div>
+          </Popup> */}
+          
         </tr>
         ))) : (
           <tr>
           <td>{1}</td>
           <td>{medicines.name}</td>
           <td>{medicines.type}</td>
-          <td>{medicines.quantity}
-          <input type="number" value={medicines.quantity} onChange={(e)=>console.log(e.target.value)}/>
-          <input type="submit" />
-          </td>
+          <td>{medicines.quantity}</td>
           <td>{medicines.expiryDate}</td>
           <td>
           <Popup trigger=
@@ -192,6 +205,7 @@ const mystyle={
                                 <button onClick=
                                     {() =>{
                                       editQuantity(medicines._id,medicines.quantity);
+                                      setQuantity(0);
                                       close()
                                     } }>
                                         Close 
