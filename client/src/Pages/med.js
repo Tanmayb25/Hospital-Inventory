@@ -5,6 +5,10 @@ import { getMedicine } from '../helper/helper';
 import toast, { Toaster } from 'react-hot-toast';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
+
+// import Medform from '../components/medform';
+import "./med.css"
+
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import {
@@ -40,6 +44,7 @@ function med() {
     })
   }
 
+
   const editQuantity = (_id,initialQuantity)=>{
     if(quantity>initialQuantity)
     {
@@ -69,6 +74,16 @@ function med() {
     }
   }
 
+  //const [filter,setFilter] = useState("")
+
+  // const submitName = ()=>{
+  //   fetchMedicine()
+  // }
+  
+const mystyle={
+  margin:"10px",
+  textDecoration:"none"
+};
   return (
     <div>
       <Toaster position='top-center' reverseOrder={false}></Toaster>
@@ -77,6 +92,10 @@ function med() {
       <button type='submit' onClick={()=>{
        setSearchMedicine({...searchMedicine,name:""})
        setName("")}}>Clear Search</button>
+      
+    
+    <div>
+
       <DropdownButton id="dropdown-basic-button" title={(filter!="")?(`${filter}`):("Filter-by")}>
       <Dropdown.Item  onClick={()=>{
           setFilter("quantity") 
@@ -91,7 +110,10 @@ function med() {
           setSearchMedicine({...searchMedicine,name:"", sortBy:""})  
         }}>None</Dropdown.Item>
     </DropdownButton>
-    <button><Link  to="/Medicineform" ><div>Add medicine</div></Link></button>
+
+    <button><Link  style={mystyle} to="/Medicineform" >Add medicine</Link></button>
+    </div>
+
     <Table striped>
       <thead>
         <tr>
@@ -112,6 +134,8 @@ function med() {
           <td>{medicine.quantity}
           {/* <input type="number" value={medicine.quantity} onChange={(e)=>console.log(e.target.value)}/>
           <input type="submit" /> */}
+          <input type="number" value={medicine.quantity} onChange={(e)=>console.log(e.target.value)} className="qtyadd"/>
+          <input type="submit" className="qtychange"/>
           </td>
           <td>{medicine.expiryDate}</td>
           {/* {(popupText===true) && (<td>

@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import toast, { Toaster } from 'react-hot-toast';
 import {  useNavigate } from 'react-router-dom' 
 import { addLabEquipment } from '../helper/helper';
+import "./labeqform.css"
 
 function LabEquipmentForm() {
     const navigate = useNavigate()

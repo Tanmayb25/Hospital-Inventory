@@ -6,7 +6,8 @@ import React from 'react';
 import {
   BrowserRouter as Router,Route, Routes
 } from "react-router-dom";
-import Navbar from "./components/Navbar.js"
+
+
 import About from "./About.js"
 import Med from './Pages/med.js';
 import Meddev from './Pages/meddev.js';
@@ -16,15 +17,19 @@ import Medform from './components/medform';
 import SurgicalEquipmentForm from './components/surgicaleqform';
 import LabEquipmentForm from './components/labeqform';
 import MedicalDeviceForm from './components/medDeviceForm';
+import Usernavbar from "./components/usernavbar.js"
+
+
+
 function App() {
 
   return (
     <>
     <Router>
-      <Navbar/>
+    <Usernavbar/>
     <Routes>
             <Route exact path="/" element={<Home/>}/>
-            <Route exact path="/Home" element={<Home/>}/>
+            {/* <Route exact path="/Home" element={<Home/>}/> */}
             <Route exact path="/About" element={<About/>}/>
             <Route exact path="/Medicine" element={<Med/>}/>
             <Route exact path="/Surg_equip" element={<Surgeq/>}/>
