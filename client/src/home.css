@@ -1,0 +1,14 @@
+.Mainpage{
+    display: flex;
+    flex-direction: column;
+    margin: 2%;
+    align-items: center;
+}
+a{
+    width:100%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+img{
+    min-height: 30px;
+}

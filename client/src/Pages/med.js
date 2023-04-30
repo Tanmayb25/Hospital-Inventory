@@ -3,8 +3,8 @@ import Table from 'react-bootstrap/Table';
 import { useState } from 'react';
 import { getMedicine } from '../helper/helper';
 import toast, { Toaster } from 'react-hot-toast';
-import Medform from '../components/medform';
-
+// import Medform from '../components/medform';
+import "./med.css"
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import {
@@ -38,11 +38,16 @@ function med() {
   // const submitName = ()=>{
   //   fetchMedicine()
   // }
+const mystyle={
+  margin:"10px",
+  textDecoration:"none"
 
+};
   return (
     <div>
+      
     <input type="search" placeholder="Search text here"></input>
-   
+    <div>
       <DropdownButton id="dropdown-basic-button" title={(filter!="")?(`${filter}`):("Filter-by")}>
       <Dropdown.Item  onClick={()=>{
           setFilter("quantity") 
@@ -57,7 +62,8 @@ function med() {
           setSearchMedicine({...searchMedicine, sortBy:""})          
         }}>None</Dropdown.Item>
     </DropdownButton>
-    <Link  to="/Medicineform" ><div>Add medicine</div></Link>
+    <Link  style={mystyle} to="/Medicineform" >Add medicine</Link>
+    </div>
     <Table striped>
       <thead>
         <tr>
@@ -75,8 +81,8 @@ function med() {
           <td>{medicine.name}</td>
           <td>{medicine.type}</td>
           <td>{medicine.quantity}
-          <input type="number" value={medicine.quantity} onChange={(e)=>console.log(e.target.value)}/>
-          <input type="submit" />
+          <input type="number" value={medicine.quantity} onChange={(e)=>console.log(e.target.value)} className="qtyadd"/>
+          <input type="submit" className="qtychange"/>
           </td>
           <td>{medicine.expiryDate}</td>
         </tr>

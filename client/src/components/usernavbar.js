@@ -6,7 +6,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import {
     Link
   } from "react-router-dom";
-function navbar() {
+function usernavbar() {
  
   return (
     <div>
@@ -19,7 +19,7 @@ function navbar() {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto mx-5">
               {/* <Nav.Link className="mx-2" as={Link} to="/Gallery">Gallery</Nav.Link> */}
-              <Nav.Link eventKey="2" className="mx-2" as={Link} to="/Home">Home</Nav.Link>
+              <Nav.Link eventKey="2" className="mx-2" as={Link} to="/">Home</Nav.Link>
               <Nav.Link eventKey="3" className="mx-2" as={Link} to="/About">About</Nav.Link>
             </Nav>
             <Nav>
@@ -36,4 +36,4 @@ function navbar() {
   )
 }
 
-export default navbar
+export default usernavbar
