@@ -86,22 +86,25 @@ function med() {
   // }
   
   
-const mystyle={
-  margin:"10px",
-  textDecoration:"none"
-};
+
   return (
     <div>
       <Toaster position='top-center' reverseOrder={false}></Toaster>
-    <input  value={name} onChange={(e)=>{setName(e.target.value)}} type="search" placeholder="Search text here" ></input>
+      <div className="btns">
+        <div className="searchbar">
+    <input  style={{width:"90%"}} value={name} onChange={(e)=>{setName(e.target.value)}} type="search" placeholder="Search text here" ></input>
+    </div>
+    <div >
       <button type='submit' onClick={()=>{setSearchMedicine({...searchMedicine,name:name})}}>Search medicine</button>
+      </div>
+      <div >
       <button type='submit' onClick={()=>{
        setSearchMedicine({...searchMedicine,name:""})
        setName("")}}>Clear Search</button>  
-    <div>
-
-
-      <DropdownButton id="dropdown-basic-button" title={(filter!="")?(`${filter}`):("Filter-by")}>
+       </div>
+       </div>
+       <div className="dropdownbtn">
+      <DropdownButton  id="dropdown-basic-button" title={(filter!="")?(`${filter}`):("Filter-by")}>
       <Dropdown.Item  onClick={()=>{
           setFilter("quantity") 
           setSearchMedicine({...searchMedicine, sortBy:"quantity"}) 
@@ -118,10 +121,10 @@ const mystyle={
           setSearchMedicine({...searchMedicine,name:"", sortBy:""})  
         }}>None</Dropdown.Item>
     </DropdownButton>
-
-    <button><Link  style={mystyle} to="/Medicineform" >Add medicine</Link></button>
-
+    
+    <button><Link  style={{textDecoration:"none"}} to="/Medicineform" >Add medicine</Link></button>
     </div>
+    
 
 
 
@@ -189,16 +192,16 @@ const mystyle={
           </tbody>
          </Table>
         ) : (
-          <span>
-            Name:{medicines.name}
-            Type:{medicines.type}
-            Dosage-Form:{medicines.dosageForm}
-            Manufacturer:{medicines.manufacturer}
-            exiryDate:{medicines.expiryDate}
-            Storage-Requirements:{medicines.storageRequirements}
-            Strength:{medicines.strength}
-            Quantity:{medicines.quantity}
-
+          <ul>
+           <li> Name : {medicines.name}</li>
+           <li>Type : {medicines.type}</li>
+           <li> Dosage-Form : {medicines.dosageForm}</li>
+           <li>Manufacturer : {medicines.manufacturer}</li>
+           <li> exiryDate : {medicines.expiryDate}</li>
+           <li>Storage-Requirements : {medicines.storageRequirements}</li>
+           <li>Strength : {medicines.strength}</li>
+           <li>Quantity : {medicines.quantity}</li>
+          
           <Popup trigger=
                 {<button> Click to enter used quantity </button>}
                 modal nested>
@@ -222,7 +225,7 @@ const mystyle={
                     )
                 }
             </Popup>
-            </span>
+            </ul>
           
         )}
       
