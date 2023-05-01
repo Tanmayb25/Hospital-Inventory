@@ -55,9 +55,11 @@ function labeq() {
         {
           deleteLabEquipment(_id).then((msg)=>{
             toast.success(`${msg}`)
+
             setSearchLabEquipment({...searchLabEquipment,name:""})
             setName("")
             fetchLabEquipment()
+
           }).catch((err)=>{
             toast.error(`${err.msg}`)
           })
@@ -182,6 +184,7 @@ function labeq() {
               </Popup>
             </span>
           )}
+
     </div>
       )
 }

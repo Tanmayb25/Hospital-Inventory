@@ -30,6 +30,7 @@ function med() {
 
   useEffect(()=>{
       fetchMedicine()
+      fetchMedicine()
   },[searchMedicine])
 
 
@@ -38,6 +39,7 @@ function med() {
     getMedicine(searchMedicine).then((result)=>{
       setMedicine(result)
     }).catch((err)=>{
+      toast.error(`${err.msg}`)
       toast.error(`${err.msg}`)
     })
   }
@@ -122,7 +124,7 @@ const mystyle={
     </div>
 
 
-    
+
         {Array.isArray(medicines) ? (
           <Table striped>
           <thead>
@@ -182,6 +184,7 @@ const mystyle={
             <div><input type='number' onChange={(e)=>{setQuantity(e.target.value)}}/></div>
           </Popup> */}
           
+
         </tr>))}
           </tbody>
          </Table>
@@ -195,6 +198,7 @@ const mystyle={
             Storage-Requirements:{medicines.storageRequirements}
             Strength:{medicines.strength}
             Quantity:{medicines.quantity}
+
           <Popup trigger=
                 {<button> Click to enter used quantity </button>}
                 modal nested>
