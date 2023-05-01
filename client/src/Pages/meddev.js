@@ -8,6 +8,8 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import {
   Link
 } from "react-router-dom";
+import Popup from 'reactjs-popup';
+import { deleteMedicalDevices,editMedicalDevices } from '../helper/helper';
 
 function meddev() {
 
@@ -19,6 +21,7 @@ function meddev() {
  
   const [MedicalDevice,setMedicalDevice] = useState([])
   const [name,setName] = useState('')
+  const [quantity,setQuantity] = useState(0)
   
   useEffect(()=>{
     fetchMedicalDevice()
@@ -30,6 +33,37 @@ function meddev() {
     }).catch((err)=>{
       toast.error(`${err.msg}`)
     })
+  }
+
+  const editQuantity = (_id,initialQuantity)=>{
+    if(quantity>initialQuantity)
+    {
+      toast.error("There is an error: Used quantity greater than present in stalk")
+    }
+    else
+    {
+        const newQuantity = initialQuantity - quantity
+        if(newQuantity!=0)
+        {
+          editMedicalDevices(_id,newQuantity).then((msg)=>{
+            toast.success("Quantity changed!!")
+          fetchMedicalDevice()
+          }).catch((err)=>{
+            toast.error(`${err.msg}`)
+          }) 
+        }
+        else
+        {
+          deleteMedicalDevices(_id).then((msg)=>{
+            toast.success(`${msg}`)
+            setSearchMedicalDevice({...searchMedicalDevice,name:""})
+            setName("")
+            fetchMedicalDevice()
+          }).catch((err)=>{
+            toast.error(`${err.msg}`)
+          })
+        } 
+    }
   }
 
   
@@ -61,23 +95,23 @@ function meddev() {
           setSearchMedicalDevice({...searchMedicalDevice, sortBy:""})          
         }}>None</Dropdown.Item>
     </DropdownButton>
-    <Link  to="/MedDeviceform" ><div>Add Medical-Device</div></Link>
+    <button><Link  to="/MedDeviceform" ><div>Add Medical-Device</div></Link></button>
     
-      <Table striped>
-      <thead>
-        <tr>
-          <th>Sr.</th>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Quantity</th>
-          <th>Price</th>
-          <th>Date Added</th>
-          <th>Description</th>
-          <th>Manufacturer</th>
-        </tr>
-      </thead>
-      <tbody>
-      { Array.isArray(MedicalDevice) ? (MedicalDevice.map((MedicalDevice,index) => (
+      
+      { Array.isArray(MedicalDevice) ? (
+        <Table striped>
+        <thead>
+          <tr>
+            <th>Sr.</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Date Added</th>
+          </tr>
+        </thead>
+        <tbody>
+        {MedicalDevice.map((MedicalDevice,index) => (
             <tr key={index}>
           <td>{index+1}</td>
           <td>{MedicalDevice.name}</td>
@@ -85,22 +119,68 @@ function meddev() {
           <td>{MedicalDevice.quantity}</td>
           <td>{MedicalDevice.price}</td>
           <td>{MedicalDevice.dateAdded}</td>
-          <td>{MedicalDevice.description}</td>
-          <td>{MedicalDevice.manufacturer}</td>
-        </tr>
-        ))) : (  <tr >
-          <td>{1}</td>
-          <td>{MedicalDevice.name}</td>
-          <td>{MedicalDevice.type}</td>
-          <td>{MedicalDevice.quantity}</td>
-          <td>{MedicalDevice.price}</td>
-          <td>{MedicalDevice.dateAdded}</td>
-          <td>{MedicalDevice.description}</td>
-          <td>{MedicalDevice.manufacturer}</td>
-        </tr>)}
-      </tbody>
-    </Table>
-
+          <td>
+          <Popup trigger=
+                {<button> Click to enter used quantity </button>}
+                modal nested>
+                {
+                    close => (
+                        <div >
+                            <div >
+                            <input type='number' onChange={(e)=>{setQuantity(e.target.value)}}/>
+                            </div>
+                            <div>
+                                <button onClick=
+                                    {() =>{
+                                      editQuantity(MedicalDevice._id,MedicalDevice.quantity);
+                                      setQuantity(0)
+                                      close()
+                                    } }>
+                                        Close modal
+                                </button>
+                            </div>
+                        </div>
+                    )
+                }
+            </Popup>
+          </td>
+        </tr>))}
+        </tbody>
+        </Table>
+        ) : (  
+          <span>
+          Name:{MedicalDevice.name}
+          Type:{MedicalDevice.type}
+          Description:{MedicalDevice.description}
+          Manufacturer:{MedicalDevice.manufacturer}
+          Price:{MedicalDevice.price}
+          Date-Added:{MedicalDevice.dateAdded}
+          Quantity:{MedicalDevice.quantity}
+          <Popup trigger=
+                {<button> Click to enter used quantity </button>}
+                modal nested>
+                {
+                    close => (
+                        <div >
+                            <div >
+                            <input type='number' onChange={(e)=>{setQuantity(e.target.value)}}/>
+                            </div>
+                            <div>
+                                <button onClick=
+                                    {() =>{
+                                      editQuantity(MedicalDevice._id,MedicalDevice.quantity);
+                                      setQuantity(0)
+                                      close()
+                                    } }>
+                                        Close modal
+                                </button>
+                            </div>
+                        </div>
+                    )
+                }
+            </Popup>
+            </span>
+        )}
     </div>
   )
 }

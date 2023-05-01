@@ -14,7 +14,7 @@ export async function getLabEquipments(req,res){
             const labEquipmentfound = new Promise((resolve,reject)=>{
                 LabEquipment.find({},function(err,labEquipments){
                     if(err){
-                        reject(new Error(`THERE WAS AN ERROR ${err}`))
+                        reject(new Error(err))
                     }
                     if(labEquipments){
                         resolve(labEquipments)
@@ -33,7 +33,7 @@ export async function getLabEquipments(req,res){
            const labEquipmentfound = new Promise((resolve,reject)=>{
                     LabEquipment.findOne({name},function(err,labEquipment) {
                     if(err){
-                        reject(new Error(`THERE WAS AN ERROR ${err}`))
+                        reject(new Error(err))
                     }
                     if(!labEquipment){
                         reject("THERE IS NO SUCH LAB EQUIPMENT")
@@ -45,7 +45,7 @@ export async function getLabEquipments(req,res){
             labEquipmentfound.then((labEquipment)=>{
                 res.status(201).send(labEquipment)
             }).catch((err)=>{
-                res.status(500).send(`there was an error: ${err}`)        
+                res.status(500).send(`there was an error:${err}`)        
             })
         }
         else if(type!="")
@@ -78,7 +78,7 @@ export async function getLabEquipments(req,res){
                 const labEquipmentfound = new Promise((resolve,reject)=>{
                     LabEquipment.find({type},function(err,labEquipment) {
                                 if(err){
-                                    reject(new Error(`THERE WAS AN ERROR ${err}`))
+                                    reject(new Error(err))
                                 }
                                 if(!labEquipment){
                                    reject("THERE ARE NO SUCH LAB EQUIPMENT")

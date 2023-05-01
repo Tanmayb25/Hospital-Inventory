@@ -67,6 +67,8 @@ function med() {
         {
           deleteMedicine(_id).then((msg)=>{
             toast.success(`${msg}`)
+            setSearchMedicine({...searchMedicine,name:""})
+            setName("")
             fetchMedicine()
           }).catch((err)=>{
             toast.error(`${err.msg}`)
@@ -95,9 +97,7 @@ const mystyle={
       <button type='submit' onClick={()=>{setSearchMedicine({...searchMedicine,name:name})}}>Search medicine</button>
       <button type='submit' onClick={()=>{
        setSearchMedicine({...searchMedicine,name:""})
-       setName("")}}>Clear Search</button>
-      
-    
+       setName("")}}>Clear Search</button>  
     <div>
 
 
@@ -124,19 +124,20 @@ const mystyle={
     </div>
 
 
-    <Table striped>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Quantity</th>
-          <th>Expiry date</th>
-        </tr>
-      </thead>
-      <tbody>
+
         {Array.isArray(medicines) ? (
-          medicines.map((medicine,index) => (
+          <Table striped>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Type</th>
+              <th>Quantity</th>
+              <th>Expiry date</th>
+            </tr>
+          </thead>
+          <tbody>
+         {medicines.map((medicine,index) => (
             <tr key={index}>
           <td>{index+1}</td>
           <td>{medicine.name}</td>
@@ -183,15 +184,21 @@ const mystyle={
             <div><input type='number' onChange={(e)=>{setQuantity(e.target.value)}}/></div>
           </Popup> */}
           
-        </tr>
-        ))) : (
-          <tr>
-          <td>{1}</td>
-          <td>{medicines.name}</td>
-          <td>{medicines.type}</td>
-          <td>{medicines.quantity}</td>
-          <td>{medicines.expiryDate}</td>
-          <td>
+
+        </tr>))}
+          </tbody>
+         </Table>
+        ) : (
+          <span>
+            Name:{medicines.name}
+            Type:{medicines.type}
+            Dosage-Form:{medicines.dosageForm}
+            Manufacturer:{medicines.manufacturer}
+            exiryDate:{medicines.expiryDate}
+            Storage-Requirements:{medicines.storageRequirements}
+            Strength:{medicines.strength}
+            Quantity:{medicines.quantity}
+
           <Popup trigger=
                 {<button> Click to enter used quantity </button>}
                 modal nested>
@@ -215,11 +222,10 @@ const mystyle={
                     )
                 }
             </Popup>
-          </td>
-          </tr>
+            </span>
+          
         )}
-      </tbody>
-    </Table>
+      
     </div>
   )
 }

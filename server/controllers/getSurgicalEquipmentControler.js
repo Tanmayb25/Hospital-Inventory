@@ -15,7 +15,7 @@ export async function getSurgicalEquipment(req,res){
             const surgicalEquipmentfound = new Promise((resolve,reject)=>{
                 SurgicalEquipment.find({},function(err,surgicalEquipments){
                     if(err){
-                        reject(new Error({"ERROR":`THERE WAS AN ERROR ${err}`}))
+                        reject(new Error(err))
                     }
                     if(surgicalEquipments){
                         resolve(surgicalEquipments)
@@ -34,7 +34,7 @@ export async function getSurgicalEquipment(req,res){
            const surgicalEquipmentfound = new Promise((resolve,reject)=>{
                     SurgicalEquipment.findOne({name},function(err,surgicalEquipment) {
                     if(err){
-                        reject(new Error({"ERROR":`THERE WAS AN ERROR ${err}`}))
+                        reject(new Error(err))
                     }
                     if(!surgicalEquipment){
                         reject("THERE IS NO SUCH SURGICAL EQUIPMENT")
@@ -64,7 +64,7 @@ export async function getSurgicalEquipment(req,res){
                 const surgicalEquipmentfound = new Promise((resolve,reject)=>{
                     SurgicalEquipment.find({catagorie},function(err,surgicalEquipment) {
                                 if(err){
-                                    reject(new Error({"ERROR":`THERE WAS AN ERROR ${err}`}))
+                                    reject(new Error(err))
                                 }
                                 if(!surgicalEquipment){
                                    reject("THERE ARE NO SUCH SURGICAL EQUIPMENT")
