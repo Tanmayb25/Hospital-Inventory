@@ -16,7 +16,7 @@ function MedicalDeviceForm() {
       manufacturer: Yup.string()
         .required('ENTER THE MANUFACTURER'),
       dateAdded :  Yup.date()
-      .max(new Date(), "INVALID EXPITY DATE")
+      .max(new Date(), "INVALID EXPIRY DATE")
       .required("ENTER THE DATE-ADDED"),
       description: Yup.string()
         .required('ENTER DESCRIPTION'),

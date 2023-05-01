@@ -16,7 +16,7 @@ export async function deleteMedicalDevice(req,res){
                 if(!deletedmedicalDevice){
                     reject("NO SUCH MEDICAL DEVICE")
                 }
-                resolve(`Stalk of ${deleteMedicalDevice} is over and it has been deleted from database`)
+                resolve(`Stock of ${deleteMedicalDevice} is over and it has been deleted from database`)
             })
         })
 

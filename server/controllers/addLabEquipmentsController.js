@@ -10,7 +10,7 @@ export async function addLabEquipment(req,res){
     const labEquipmentExist = new Promise((resolve,reject)=>{
         LabEquipment.findOne({name},function(err,labEquipment){
             if(err){
-                reject(new Error({error:err}))
+                reject(new Error(err))
             }
             if(labEquipment){
                 reject("labEquipment alread exist in database")
@@ -29,11 +29,11 @@ export async function addLabEquipment(req,res){
                         console.log(result);
                         res.status(201).send({ msg: "Lab Equipment added in database Successfully"})
                     })
-                    .catch(error => res.status(500).send({error:"there is an error: "+error}))
+                    .catch(error => res.status(500).send({msg:`there is some error: ${error}`}))
         }).catch(error => {
-            return res.status(500).send({ error:"there is some error: "+error})
+            return res.status(500).send({ msg:`there is some error: ${error}`})
         })
         }catch(err){
-        res.status(500).json("ERROR: " + err);
+        res.status(500).json({msg:`there is some error: ${error}`});
     }
 }

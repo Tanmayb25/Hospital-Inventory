@@ -34,6 +34,6 @@ export async function addSurgicalEquipment(req,res){
             return res.status(409).send({ msg:`THERE WAS SOME ERROR: ${error}`})
         })
         }catch(err){
-        res.status(500).json({ msg:`THERE WAS SOME ERROR: ${error}`});
+        res.status(500).json({ msg:`THERE WAS SOME ERROR: ${err}`});
     }
 }

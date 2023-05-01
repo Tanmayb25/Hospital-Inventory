@@ -18,7 +18,7 @@ function medform() {
       manufacturer: Yup.string()
         .required('ENTER THE MANUFACTURER'),
       expiryDate :  Yup.date()
-      .min(new Date(), "INVALID EXPITY DATE")
+      .min(new Date(), "INVALID EXPIRY DATE")
       .required("ENTER THE EXPIRY-DATE"),
       storageRequirements: Yup.string()
         .required('ENTER STORAGE-REQUIREMENTS'),

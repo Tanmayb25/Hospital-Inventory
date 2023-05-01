@@ -23,7 +23,7 @@ export async function deleteLabEquipment(req,res){
         })
 
         labEquipmentfound.then((result)=>{
-            res.status(201).send({msg:`Stalk of ${result.name} is over and it is deleted from database `})
+            res.status(201).send({msg:`Stock of ${result.name} is over and it is deleted from database `})
         }).catch((err)=>{
             res.status(409).send({msg:`There was an error: ${err}`})
         })
