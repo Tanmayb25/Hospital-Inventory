@@ -26,7 +26,7 @@ function surgeq() {
     getSurgicalEquipment(searchSurgicalEquimpent).then((result)=>{
       setSurgicalEquipment(result)
     }).catch((err)=>{
-      toast.error(`THERE WAS SOME PROBLEM: ${err.msg}`)
+      toast.error(`${err.msg}`)
     })
   }
 
@@ -52,6 +52,8 @@ function surgeq() {
         {
           deleteSurgicalEquipment(_id).then((msg)=>{
             toast.success(`${msg}`)
+            setSearchSurgicalEquimpent({...searchSurgicalEquimpent,name:""})
+            setName("")
             fetchSurgicalEquipment()
           }).catch((err)=>{
             toast.error(`${err.msg}`)
@@ -96,7 +98,8 @@ function surgeq() {
         </tr>
       </thead>
       <tbody>
-        {Array.isArray(surgicalEquipment) ? (surgicalEquipment.map((surgicalEquipment,index) => (
+        {Array.isArray(surgicalEquipment) ? (
+          surgicalEquipment.map((surgicalEquipment,index) => (
             <tr key={index}>
           <td>{index+1}</td>
           <td>{surgicalEquipment.name}</td>

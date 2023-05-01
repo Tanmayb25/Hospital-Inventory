@@ -56,7 +56,9 @@ function meddev() {
         {
           deleteMedicalDevices(_id).then((msg)=>{
             toast.success(`${msg}`)
-          fetchMedicalDevice()
+            setSearchMedicalDevice({...searchMedicalDevice,name:""})
+            setName("")
+            fetchMedicalDevice()
           }).catch((err)=>{
             toast.error(`${err.msg}`)
           })
@@ -93,21 +95,23 @@ function meddev() {
           setSearchMedicalDevice({...searchMedicalDevice, sortBy:""})          
         }}>None</Dropdown.Item>
     </DropdownButton>
-    <Link  to="/MedDeviceform" ><div>Add Medical-Device</div></Link>
+    <button><Link  to="/MedDeviceform" ><div>Add Medical-Device</div></Link></button>
     
-      <Table striped>
-      <thead>
-        <tr>
-          <th>Sr.</th>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Quantity</th>
-          <th>Price</th>
-          <th>Date Added</th>
-        </tr>
-      </thead>
-      <tbody>
-      { Array.isArray(MedicalDevice) ? (MedicalDevice.map((MedicalDevice,index) => (
+      
+      { Array.isArray(MedicalDevice) ? (
+        <Table striped>
+        <thead>
+          <tr>
+            <th>Sr.</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Date Added</th>
+          </tr>
+        </thead>
+        <tbody>
+        {MedicalDevice.map((MedicalDevice,index) => (
             <tr key={index}>
           <td>{index+1}</td>
           <td>{MedicalDevice.name}</td>
@@ -140,15 +144,18 @@ function meddev() {
                 }
             </Popup>
           </td>
-        </tr>
-        ))) : (  <tr >
-          <td>{1}</td>
-          <td>{MedicalDevice.name}</td>
-          <td>{MedicalDevice.type}</td>
-          <td>{MedicalDevice.quantity}</td>
-          <td>{MedicalDevice.price}</td>
-          <td>{MedicalDevice.dateAdded}</td>
-          <td>
+        </tr>))}
+        </tbody>
+        </Table>
+        ) : (  
+          <span>
+          Name:{MedicalDevice.name}
+          Type:{MedicalDevice.type}
+          Description:{MedicalDevice.description}
+          Manufacturer:{MedicalDevice.manufacturer}
+          Price:{MedicalDevice.price}
+          Date-Added:{MedicalDevice.dateAdded}
+          Quantity:{MedicalDevice.quantity}
           <Popup trigger=
                 {<button> Click to enter used quantity </button>}
                 modal nested>
@@ -172,12 +179,8 @@ function meddev() {
                     )
                 }
             </Popup>
-          </td>
-        </tr>
+            </span>
         )}
-      </tbody>
-    </Table>
-
     </div>
   )
 }

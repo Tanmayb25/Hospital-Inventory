@@ -43,7 +43,6 @@ export async function getLabEquipment(searchLabEquipment){
         {
             return Promise.reject({msg:"THERE WAS AN ERROR"})
         }
-        console.log(data);
         return Promise.resolve(data)
     }catch(err){
         return Promise.reject(err.response.data)

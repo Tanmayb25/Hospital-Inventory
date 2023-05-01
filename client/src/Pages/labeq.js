@@ -30,7 +30,7 @@ function labeq() {
     getLabEquipment(searchLabEquipment).then((result)=>{
       setLabEquipment(result)
     }).catch((err)=>{
-      toast.error(`${err.msg}`)
+      toast.error(`${err}`)
     })
   }
 
@@ -55,7 +55,9 @@ function labeq() {
         {
           deleteLabEquipment(_id).then((msg)=>{
             toast.success(`${msg}`)
-          fetchLabEquipment()
+            setSearchLabEquipment({...searchLabEquipment,name:""})
+            setName("")
+            fetchLabEquipment()
           }).catch((err)=>{
             toast.error(`${err.msg}`)
           })
@@ -93,19 +95,21 @@ function labeq() {
     </DropdownButton>
     <button><Link  to="/LabEqform" ><div>Add lab-equipment</div></Link></button>
     
-    <Table striped>
-      <thead>
-        <tr>
-          <th>Sr.</th>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Quantity</th>
-          <th>Price</th>
-          <th>Date Added</th>
-        </tr>
-      </thead>
-      <tbody>
-        { Array.isArray(LabEquipment) ?(LabEquipment.map((LabEquipment,index) => (
+   
+        { Array.isArray(LabEquipment) ?(
+           <Table striped>
+           <thead>
+             <tr>
+               <th>Sr.</th>
+               <th>Name</th>
+               <th>Type</th>
+               <th>Quantity</th>
+               <th>Price</th>
+               <th>Date Added</th>
+             </tr>
+           </thead>
+           <tbody> 
+          {LabEquipment.map((LabEquipment,index) => (
             <tr key={index}>
           <td>{index+1}</td>
           <td>{LabEquipment.name}</td>
@@ -138,42 +142,46 @@ function labeq() {
                 }
             </Popup>
           </td>
-        </tr>
-        ))): (<tr >
-          <td>{1}</td>
-          <td>{LabEquipment.name}</td>
-          <td>{LabEquipment.type}</td>
-          <td>{LabEquipment.quantity}</td>
-          <td>{LabEquipment.price}</td>
-          <td>{LabEquipment.dateAdded}</td>
-          <td>
-          <Popup trigger=
-                {<button> Click to enter used quantity </button>}
-                modal nested>
-                {
-                    close => (
-                        <div >
-                            <div >
-                            <input type='number' onChange={(e)=>{setQuantity(e.target.value)}}/>
-                            </div>
-                            <div>
-                                <button onClick=
-                                    {() =>{
-                                      editQuantity(LabEquipment._id,LabEquipment.quantity);
-                                      setQuantity(0)
-                                      close()
-                                    } }>
-                                        Close modal
-                                </button>
-                            </div>
-                        </div>
-                    )
-                }
-            </Popup>
-          </td>
-        </tr>) }
-      </tbody>
-    </Table>
+        </tr>))}
+        </tbody>
+        </Table>
+        ): (
+          <span>
+            Name:{LabEquipment.name}
+            Type:{LabEquipment.type}
+            Manufacturer:{LabEquipment.manufacturer}
+            Description:{LabEquipment.description}
+            Price:{LabEquipment.price}
+            Model-Number:{LabEquipment.modelNumber}
+            Serial-Number:{LabEquipment.serialNumber}
+            Warranty:{LabEquipment.warranty}
+            Date-Added:{LabEquipment.dateAdded}
+            Quantity:{LabEquipment.quantity}
+            <Popup trigger=
+                  {<button> Click to enter used quantity </button>}
+                  modal nested>
+                  {
+                      close => (
+                          <div >
+                              <div >
+                              <input type='number' onChange={(e)=>{setQuantity(e.target.value)}}/>
+                              </div>
+                              <div>
+                                  <button onClick=
+                                      {() =>{
+                                        editQuantity(LabEquipment._id,LabEquipment.quantity);
+                                        setQuantity(0)
+                                        close()
+                                      } }>
+                                          Close modal
+                                  </button>
+                              </div>
+                          </div>
+                      )
+                  }
+              </Popup>
+            </span>
+          )}
     </div>
       )
 }
