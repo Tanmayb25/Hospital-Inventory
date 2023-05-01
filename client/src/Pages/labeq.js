@@ -72,11 +72,16 @@ function labeq() {
   return (
     <div>
       <Toaster position='top-center' reverseOrder={false}></Toaster>
+      <div className="btns">
+        <div className="searchbar">
       <input  value={name} onChange={(e)=>{setName(e.target.value)}} type="search" placeholder="Search text here" ></input>
+      </div>
       <button type='submit' onClick={()=>{setSearchLabEquipment({...searchLabEquipment,name:name})}}>Search Lab-Equipment</button>
       <button type='submit' onClick={()=>{
        setSearchLabEquipment({...searchLabEquipment,name:""})
        setName("")}}>Clear Search</button>
+       </div>
+       <div className="dropdownbtn">
       <DropdownButton id="dropdown-basic-button" title={(filter!="")?(`${filter}`):("Filter-by")}>
       <Dropdown.Item  onClick={()=>{
           setFilter("quantity") 
@@ -95,8 +100,8 @@ function labeq() {
           setSearchLabEquipment({...searchLabEquipment, sortBy:""})          
         }}>None</Dropdown.Item>
     </DropdownButton>
-    <button><Link  to="/LabEqform" ><div>Add lab-equipment</div></Link></button>
-    
+    <button><Link  style={{textDecoration:"none",color:"black"}} to="/LabEqform" ><div>Add lab-equipment</div></Link></button>
+    </div>
    
         { Array.isArray(LabEquipment) ?(
            <Table striped>
@@ -148,17 +153,18 @@ function labeq() {
         </tbody>
         </Table>
         ): (
-          <span>
-            Name:{LabEquipment.name}
-            Type:{LabEquipment.type}
-            Manufacturer:{LabEquipment.manufacturer}
-            Description:{LabEquipment.description}
-            Price:{LabEquipment.price}
-            Model-Number:{LabEquipment.modelNumber}
-            Serial-Number:{LabEquipment.serialNumber}
-            Warranty:{LabEquipment.warranty}
-            Date-Added:{LabEquipment.dateAdded}
-            Quantity:{LabEquipment.quantity}
+          <ul>
+           <li> Name:{LabEquipment.name}</li>
+           <li>Type:{LabEquipment.type}</li>
+           <li>Manufacturer:{LabEquipment.manufacturer}</li>
+           <li>Description:{LabEquipment.description}</li>
+           <li>Price:{LabEquipment.price}</li>
+           <li>Model-Number:{LabEquipment.modelNumber}</li>
+           <li>Serial-Number:{LabEquipment.serialNumber}</li>
+           <li>Warranty:{LabEquipment.warranty}</li>
+           <li>Date-Added:{LabEquipment.dateAdded}</li>
+           <li>Quantity:{LabEquipment.quantity}</li>
+            
             <Popup trigger=
                   {<button> Click to enter used quantity </button>}
                   modal nested>
@@ -182,7 +188,8 @@ function labeq() {
                       )
                   }
               </Popup>
-            </span>
+              </ul>
+           
           )}
 
     </div>

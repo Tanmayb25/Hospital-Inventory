@@ -95,16 +95,16 @@ function med() {
     <input  style={{width:"90%"}} value={name} onChange={(e)=>{setName(e.target.value)}} type="search" placeholder="Search text here" ></input>
     </div>
     <div >
-      <button type='submit' onClick={()=>{setSearchMedicine({...searchMedicine,name:name})}}>Search medicine</button>
+      <button className="searchsubmit" type='submit' onClick={()=>{setSearchMedicine({...searchMedicine,name:name})}}>Search medicine</button>
       </div>
       <div >
-      <button type='submit' onClick={()=>{
+      <button className="clearsearch" type='submit' onClick={()=>{
        setSearchMedicine({...searchMedicine,name:""})
        setName("")}}>Clear Search</button>  
        </div>
        </div>
        <div className="dropdownbtn">
-      <DropdownButton  id="dropdown-basic-button" title={(filter!="")?(`${filter}`):("Filter-by")}>
+      <DropdownButton id="dropdown-basic-button" title={(filter!="")?(`${filter}`):("Filter-by")}>
       <Dropdown.Item  onClick={()=>{
           setFilter("quantity") 
           setSearchMedicine({...searchMedicine, sortBy:"quantity"}) 
@@ -122,7 +122,7 @@ function med() {
         }}>None</Dropdown.Item>
     </DropdownButton>
     
-    <button><Link  style={{textDecoration:"none"}} to="/Medicineform" >Add medicine</Link></button>
+    <button><Link  style={{textDecoration:"none",color:"black"}} to="/Medicineform" >Add medicine</Link></button>
     </div>
     
 

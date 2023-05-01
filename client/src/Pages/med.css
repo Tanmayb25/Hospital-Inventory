@@ -3,12 +3,12 @@
     flex-direction: row;
     justify-content:flex-start;
     flex-wrap: wrap;
-    width:90%;
+    width:100%;
     align-items:normal;
     margin-top: 2%;
 }
 .searchbar{
-width: 50%;
+width: 60%;
 }
 
 .dropdownbtn{
@@ -18,3 +18,11 @@ width: 50%;
     align-items: baseline;
     margin-left: 2%;
 }
+
+.clearsearch{
+    height: 80%;
+}
+.searchsubmit{
+    height: 80%;
+}
+

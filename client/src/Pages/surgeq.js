@@ -70,12 +70,17 @@ function surgeq() {
 
   return (
     <div>
+      <div classNmae="btns">
       <Toaster position='top-center' reverseOrder={false}></Toaster>
+      <div className="searchbar">
       <input  value={name} onChange={(e)=>{setName(e.target.value)}} type="search" placeholder="Search text here" ></input>
+      </div>
       <button type='submit' onClick={()=>{setSearchSurgicalEquimpent({...searchSurgicalEquimpent,name:name})}}>Search Surgical-Equimpent</button>
       <button type='submit' onClick={()=>{
        setSearchSurgicalEquimpent({...searchSurgicalEquimpent,name:""})
        setName("")}}>Clear Search</button>
+       </div>
+       <div className="dropdownbtn">
       <DropdownButton id="dropdown-basic-button" title={(filter!="")?(`${filter}`):("Filter-by")}>
       <Dropdown.Item  onClick={()=>{
           setFilter("quantity") 
@@ -86,7 +91,8 @@ function surgeq() {
           setSearchSurgicalEquimpent({...searchSurgicalEquimpent, sortBy:""})          
         }}>None</Dropdown.Item>
     </DropdownButton>
-    <button><Link  to="/SurgicalEqform" ><div>Add surgical-equipment</div></Link></button>
+    <button><Link  style={{textDecoration:"none",color:"black"}} to="/SurgicalEqform" ><div>Add surgical-equipment</div></Link></button>
+    </div>
       <Table striped>
       <thead>
         <tr>

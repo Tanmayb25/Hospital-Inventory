@@ -1,0 +1,11 @@
+.btns{
+ 
+        display:flex;
+        flex-direction: row;
+        justify-content:flex-start;
+        flex-wrap: wrap;
+        width:90%;
+        align-items:normal;
+        margin-top: 2%;
+   
+}

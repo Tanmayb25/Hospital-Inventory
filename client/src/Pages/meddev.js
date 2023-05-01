@@ -72,11 +72,16 @@ function meddev() {
   return (
     <div>
       <Toaster position='top-center' reverseOrder={false}></Toaster>
+      <div className="btns">
+      <div className="searchbar">
       <input  value={name} onChange={(e)=>{setName(e.target.value)}} type="search" placeholder="Search text here" ></input>
+      </div>
       <button type='submit' onClick={()=>{setSearchMedicalDevice({...searchMedicalDevice,name:name})}}>Search Medical-Device</button>
       <button type='submit' onClick={()=>{
        setSearchMedicalDevice({...searchMedicalDevice,name:""})
        setName("")}}>Clear Search</button>
+        </div>
+        <div className="dropdownbtn">
       <DropdownButton id="dropdown-basic-button" title={(filter!="")?(`${filter}`):("Filter-by")}>
       <Dropdown.Item  onClick={()=>{
           setFilter("quantity") 
@@ -95,8 +100,8 @@ function meddev() {
           setSearchMedicalDevice({...searchMedicalDevice, sortBy:""})          
         }}>None</Dropdown.Item>
     </DropdownButton>
-    <button><Link  to="/MedDeviceform" ><div>Add Medical-Device</div></Link></button>
-    
+    <button><Link  style={{textDecoration:"none",color:"black"}} to="/MedDeviceform" ><div>Add Medical-Device</div></Link></button>
+    </div>
       
       { Array.isArray(MedicalDevice) ? (
         <Table striped>
@@ -148,14 +153,14 @@ function meddev() {
         </tbody>
         </Table>
         ) : (  
-          <span>
-          Name:{MedicalDevice.name}
-          Type:{MedicalDevice.type}
-          Description:{MedicalDevice.description}
-          Manufacturer:{MedicalDevice.manufacturer}
-          Price:{MedicalDevice.price}
-          Date-Added:{MedicalDevice.dateAdded}
-          Quantity:{MedicalDevice.quantity}
+          <ul>
+          <li>Name:{MedicalDevice.name}</li>
+          <li>Type:{MedicalDevice.type}</li>
+          <li>Description:{MedicalDevice.description}</li>
+          <li>Manufacturer:{MedicalDevice.manufacturer}</li>
+          <li>Price:{MedicalDevice.price}</li>
+          <li>Date-Added:{MedicalDevice.dateAdded}</li>
+          <li>Quantity:{MedicalDevice.quantity}</li>
           <Popup trigger=
                 {<button> Click to enter used quantity </button>}
                 modal nested>
@@ -179,7 +184,7 @@ function meddev() {
                     )
                 }
             </Popup>
-            </span>
+            </ul>
         )}
     </div>
   )
